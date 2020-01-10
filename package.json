@@ -36,7 +36,7 @@
     "@types/request": "^2.48.1",
     "@types/urllib": "^2.33.0",
     "ejs": "^2.6.1",
-    "electron": "^5.0.2",
+    "electron": "7.1.8",
     "fs-extra": "^8.1.0",
     "generate-schema": "^2.6.0",
     "json-schema-to-typescript": "^6.1.3",
