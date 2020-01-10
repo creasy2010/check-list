@@ -1,0 +1,40 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext",
+      "es2015",
+      "es2016",
+      "es2017"
+    ],
+    "baseUrl": "./src",
+    "paths": {
+      "@/**":["./src/**"],
+      "service/*": ["./web_modules/service/*"],
+      "kit": ["./src/web_modules/kit"],
+      "kit/*": ["./src/web_modules/kit/*"],
+      "ui/*": ["./src/web_modules/ui/*"],
+      "api/*": ["./src/webapi/*"]
+    },
+    "allowJs": true,
+    "skipLibCheck": true,
+    "noImplicitAny": false,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "strictNullChecks": false,
+    "forceConsistentCasingInFileNames": true,
+    "experimentalDecorators": true,
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": false,
+    "noEmit": true,
+    "jsx": "react"
+  },
+  "include": [
+    "src"
+  ]
+}

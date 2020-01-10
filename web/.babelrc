@@ -1,0 +1,50 @@
+{
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "targets": {
+          "chrome": "58",
+          "ie": "10",
+          "esmodules": false
+        }
+      }
+    ],
+    ["react-app", {
+      "flow": false,
+      "typescript": true
+    }],
+    "@babel/preset-react",
+    "@babel/preset-typescript"
+  ],
+  "plugins": [
+    "@babel/plugin-transform-runtime",
+    ["@babel/plugin-proposal-decorators", {
+      "legacy": true
+    }],
+    ["@babel/plugin-proposal-class-properties", {
+      "loose": true
+    }],
+    [
+      "import",
+      {
+        "libraryName": "antd",
+        "libraryDirectory": "es",
+        "style": "css"
+      }
+    ],
+    "lodash",
+    ["module-resolver", {
+      "root": ["."],
+      "alias": {
+        "api": ["./src/webapi"],
+        "@/**": ["./src/**"],
+        "@/redux": "./src/redux",
+        "@/pages": "./src/pages",
+        "kit": "./src/web_modules/kit",
+        "service": "./src/web_modules/service",
+        "ui": "./src/web_modules/ui"
+      }
+    }], "@babel/plugin-syntax-dynamic-import"
+  ]
+}

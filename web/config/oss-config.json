@@ -1,0 +1,7 @@
+{
+  "prefixUrl": "",
+  "accessKeyId": "",
+  "accessKeySecret": "",
+  "prefix":"card/prod",
+  "timeout": 30000
+}
