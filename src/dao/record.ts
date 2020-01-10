@@ -21,14 +21,4 @@ const recordPath = join(checkListDir, 'record.json');
 type Id =string;
 
 
-export interface IRecord{
-  id:Id;
-  task:ITaskInfo;
-}
-
-export function addRecord(record:IRecord){
-
-}
-
-
 
