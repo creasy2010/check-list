@@ -22,7 +22,6 @@ class LeftMenu extends React.Component<ILeftMenuProps, T.ILeftMenuState> {
   }
 
   render() {
-    let {} = this.props.main;
 
     return (
       <div className="leftMenu" style={{}}>
@@ -100,11 +99,6 @@ class LeftMenu extends React.Component<ILeftMenuProps, T.ILeftMenuState> {
       </div>
     );
   }
-
-  _clickMenu = ({item, key, keyPath}) => {
-    console.log(item, key, keyPath);
-    this.setState({activeIndex: key});
-  };
 }
 
 export default LeftMenu as any;
