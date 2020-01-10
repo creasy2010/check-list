@@ -7,7 +7,8 @@ const MainFrame = loadable(() => import('@/pages/frame'));
 const Main = () =>
   <Router>
     <Switch>
-      <Route path="/" render={() => <MainFrame>
+      <Route path="/" render={() => <div>
+        123123
         {/*<Route path="/" exact={true} component={()=><div>*/}
         {/*  hello welcome to moon*/}
         {/*  <br/>*/}
@@ -19,7 +20,7 @@ const Main = () =>
         {/*<Route exact={true}  path="/moon/page" component={loadable(() => import('@/pages/moon/page'))} />*/}
         {/*<Route exact={true}  path="/moon/list" component={loadable(() => import('@/pages/moon/list'))} />*/}
         {/*<Route exact={true}  path="/schema/define" component={loadable(() => import('@/pages/schema/define'))} />*/}
-      </MainFrame>} />
+      </div>} />
     </Switch>
   </Router>;
 
