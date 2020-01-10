@@ -1,11 +1,10 @@
 {
-  "extends": "../../tsconfig.json",
   "compilerOptions": {
     "noEmit": false,
     "rootDir": "./src",
     "skipDefaultLibCheck": true,
     "skipLibCheck": true,
-    "outDir": "./dist",
+    "outDir": "./lib",
     "declarationDir":"./declarations",
     "declaration": true
   },

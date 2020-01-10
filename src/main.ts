@@ -57,7 +57,7 @@ function createWindow() {
   // mainWindow.webContents.session.setPreloads(join(__dirname,'./preload.js'));
 
   // and load the index.html of the app.
-  mainWindow.loadFile(join(__dirname, "./static-web/index.html"));
+  mainWindow.loadFile(join(__dirname, "../static-web/index.html"));
   // mainWindow.loadURL("http://localhost:8787/");
   // mainWindow.loadURL("https://moon-coder.github.io/");
   // mainWindow.webContents.openDevTools();

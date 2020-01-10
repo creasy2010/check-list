@@ -1,6 +1,6 @@
 import * as fs from 'fs-extra';
 import * as path from  'path';
-//
+
 fs.rmdir(path.join(__dirname, "../../app/dist/static-web"), () => {
   fs.mkdir(path.join(__dirname, "../../app/dist/static-web"), () => {
     copy(

@@ -1,9 +1,9 @@
 {
-  "name": "moon-app",
+  "name": "check-list",
   "version": "0.0.7-beta.11",
   "description": "A minimal Electron application written with Typescript",
   "bin": {
-    "moonapp": "bin/main.js"
+    "moonapp": "lib/main.js"
   },
   "scripts": {
     "test": "jest",
@@ -11,8 +11,7 @@
     "watch": "tsc -w",
     "prepublishOnly": "tsc",
     "lint": "tslint -c tslint.json -p tsconfig.json",
-    "startTmp": "electron ./dist/main.js",
-    "start": "npm run build && electron ./dist/main.js"
+    "start": "npm run build && electron ./lib/main.js"
   },
   "repository": "https://github.com/electron/electron-quick-start-typescript",
   "keywords": [
