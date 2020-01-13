@@ -11,7 +11,7 @@ import {ipcRenderer} from 'electron';
 import * as urllib from  'urllib';
 import * as fsExtra from  'fs-extra';
 import * as path from 'path';
-import * as dao from './dao';
+import {TaskRecordDao,TaskCateDao,TaskDao} from './dao';
 ipcRenderer.on('asynchronous-reply', (event, arg) => {
   console.log(arg); // prints "pong"
 });
@@ -36,13 +36,17 @@ window.readConfig = function() {
 };
 
 //@ts-ignore
-window.moon = {
+window.checkSdk = {
   api:{
     urllib,
     fsExtra,
     path
   },
-  dao,
+  dao:{
+    taskRecordDao:new TaskRecordDao(),
+    taskCateDao:new TaskCateDao(),
+    taskDao:new TaskDao()
+  },
   context: {
     pwd: process.cwd(),
     projectName:"",// TODO 添加 这个信息;

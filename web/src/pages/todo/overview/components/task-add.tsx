@@ -22,10 +22,15 @@ export default class TaskAdd extends React.Component<
   render() {
     let {main} = this.props;
     let {actions} = pageModel;
+    let tasks = window.checkSdk.dao.taskDao.db;
 
     return (
       <div className="taskAdd">
-        <div />
+        <h2>任务列表</h2>
+        {tasks.map(taskItem=>{
+          return <div>{taskItem.target}</div>
+        })}
+        <h2>添加任务</h2>
       </div>
     );
   }

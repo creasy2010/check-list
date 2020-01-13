@@ -6,6 +6,7 @@ import Action from './action';
 import * as main from '../reducers/main';
 
 import {IAllReducerProps} from '../types';
+import * as dao from "../../../../../../src/dao";
 
 export class PageModel extends redux.BaseModel<IAllReducerProps> {
   actions = {
@@ -22,9 +23,12 @@ export class PageModel extends redux.BaseModel<IAllReducerProps> {
    * 初始化数据
    */
   async init() {
-    this.emit(Command.init, {
-      //main  :{},
-    });
+
+    // this.emit(Command.init, {
+    //   main : {
+    //     cates:
+    //   },
+    // });
   }
 }
 

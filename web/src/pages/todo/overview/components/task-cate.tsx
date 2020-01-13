@@ -17,15 +17,20 @@ export default class TaskCate extends React.Component<
   }
 
   /**
-    
+
 */
   render() {
     let {main} = this.props;
     let {actions} = pageModel;
 
+    let cates = window.checkSdk.dao.taskCateDao.db;
+
     return (
       <div className="taskCate">
-        <div />
+        <h2>分类列表</h2>
+        {cates.map(cateItem=>{
+          return <div>{cateItem.name}</div>
+        })}
       </div>
     );
   }
