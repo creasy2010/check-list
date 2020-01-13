@@ -30,7 +30,9 @@ export default class TodoOverview extends React.Component<
 
     return (
       <div id="todoOverview" className="todoOverview">
-        <div />
+        <TaskAdd/>
+        <TaskCate/>
+        <TaskRecord/>
       </div>
     );
   }
