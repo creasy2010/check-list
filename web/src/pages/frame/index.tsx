@@ -18,6 +18,7 @@ class Frame extends React.Component<T.IProps, any> {
   render() {
     return (
       <Layout className="frame">
+
         <Header className="header">
           <div className="logo" />
           {/*<Menu*/}

@@ -4,8 +4,10 @@
       "@babel/preset-env",
       {
         "targets": {
-          "chrome": "72"
-        }
+          "chrome": "79",
+          "esmodules": true
+        },
+        "debug": true
       }
     ],
     ["react-app", {
@@ -19,6 +21,9 @@
     "@babel/plugin-transform-runtime",
     ["@babel/plugin-proposal-decorators", {
       "legacy": true
+    }],
+    ["@babel/plugin-proposal-class-properties", {
+      "loose": true
     }],
     [
       "import",

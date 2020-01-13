@@ -1,5 +1,4 @@
 import {Command} from '../constant';
-import api from 'api';
 import {redux} from 'moon-runtime';
 
 import Action from './action';
