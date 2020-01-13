@@ -59,41 +59,6 @@ class LeftMenu extends React.Component<ILeftMenuProps, T.ILeftMenuState> {
             <Icon type="api" />
             <span>api接口生成</span>
           </Menu.Item>
-          <SubMenu
-            key="sub2"
-            title={
-              <span>
-                <Icon type="tool" />
-                <span>前端工具合集</span>
-              </span>
-            }
-          >
-            <Menu.Item key="5" data-href="http://json2ts.com/" data-target="_blank">JSON2TS</Menu.Item>
-            <Menu.Item key="5" data-href="https://www.json.cn/" data-target="_blank">JSON格式化</Menu.Item>
-          </SubMenu>
-          <SubMenu
-            key="sub3"
-            title={
-              <span>
-                <Icon type="tool" />
-                <span>xLib合集</span>
-              </span>
-            }
-          >
-            <Menu.Item key="5" data-href="#/schema/define" >模式定义</Menu.Item>
-          </SubMenu>
-          <SubMenu
-            key="sub4"
-            title={
-              <span>
-                <Icon type="tool" />
-                <span>backend</span>
-              </span>
-            }
-          >
-            <Menu.Item key="6" data-href="#/backend/model/list" >模型列表</Menu.Item>
-            <Menu.Item key="7" data-href="#/backend/service/list" >服务列表</Menu.Item>
-          </SubMenu>
         </Menu>
 
       </div>

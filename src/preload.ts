@@ -11,6 +11,7 @@ import {ipcRenderer} from 'electron';
 import * as urllib from  'urllib';
 import * as fsExtra from  'fs-extra';
 import * as path from 'path';
+import * as dao from './dao';
 ipcRenderer.on('asynchronous-reply', (event, arg) => {
   console.log(arg); // prints "pong"
 });
@@ -41,6 +42,7 @@ window.moon = {
     fsExtra,
     path
   },
+  dao,
   context: {
     pwd: process.cwd(),
     projectName:"",// TODO 添加 这个信息;

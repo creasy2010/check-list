@@ -10,15 +10,10 @@ import { readJSON, existsSync} from 'fs-extra';
 import {join} from 'path';
 import {BaseDao} from "./base";
 
-let taskRepo: ITaskInfo[];
-let taskCateRepo: ITaskCate[];
-
 const checkListDir = join(
   process.env.HOME || process.env.USERPROFILE,
   '.check-list',
 );
-const taskInfoPath = join(checkListDir, 'task.json');
-const taskCatePath = join(checkListDir, 'task-cate.json');
 
 type Id =string;
 type TaskId = Id;
