@@ -1,6 +1,7 @@
 export interface IMainReducer {
   isReady: boolean;
   isLoading?: boolean;
+  tasks:any[];
 }
 
 export type IAllReducerProps = {

@@ -1,12 +1,9 @@
 import {Command} from '../constant';
 import {redux} from 'moon-runtime';
-
 import Action from './action';
-
 import * as main from '../reducers/main';
 
 import {IAllReducerProps} from '../types';
-import * as dao from "../../../../../../src/dao";
 
 export class PageModel extends redux.BaseModel<IAllReducerProps> {
   actions = {
@@ -24,11 +21,11 @@ export class PageModel extends redux.BaseModel<IAllReducerProps> {
    */
   async init() {
 
-    // this.emit(Command.init, {
-    //   main : {
-    //     cates:
-    //   },
-    // });
+    this.emit(Command.init, {
+      main : {
+        tasks:window.checkSdk.dao.taskDao.db
+      },
+    });
   }
 }
 

@@ -8,6 +8,28 @@ import { LocaleProvider } from "antd";
 import zhCN from "antd/lib/locale-provider/zh_CN";
 import { Provider } from 'react-redux'
 
+if(!window.checkSdk){
+  window.checkSdk={
+    dao:{
+      taskCateDao:{},
+      taskRecordDao:{},
+      taskDao:{
+        db:[
+          {
+            id: '123123',
+            title: 'teststst',
+          },
+          {
+            id: '1231233423',
+            title: 'teststst11',
+          },
+        ]
+      }
+    }
+  }
+}
+
+
 ReactDOM.render(
   <Provider store={store}>
     <LocaleProvider locale={zhCN}>

@@ -23,16 +23,18 @@ export default class TaskAdd extends React.Component<
   render() {
     let {main} = this.props;
     let {actions} = pageModel;
-    // let tasks = window.checkSdk.dao.taskDao.db;
 
-    let tasks=[{
-      id:"123123",
-      title:'teststst',
-    },{
-      id:"1231233423",
-        title:'teststst11',
-      }
-    ]
+
+    let tasks =  main.tasks;
+
+    // let tasks=[{
+    //   id:"123123",
+    //   title:'teststst',
+    // },{
+    //   id:"1231233423",
+    //     title:'teststst11',
+    //   }
+    // ]
     let mainFrame;
     const todos = tasks;
 
@@ -63,25 +65,6 @@ export default class TaskAdd extends React.Component<
         />
       );
     });
-
-    //
-    // var activeTodoCount = todos.reduce(function (accum, todo) {
-    //   return todo.completed ? accum : accum + 1;
-    // }, 0);
-    //
-    // var completedCount = todos.length - activeTodoCount;
-    //
-    // if (activeTodoCount || completedCount) {
-    //   footer =
-    //     <TodoFooter
-    //       count={activeTodoCount}
-    //       completedCount={completedCount}
-    //       nowShowing={this.state.nowShowing}
-    //       onClearCompleted={ e=> this.clearCompleted() }
-    //     />;
-    // }
-
-
 
     if (todos.length) {
       mainFrame = (
