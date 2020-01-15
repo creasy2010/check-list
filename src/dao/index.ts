@@ -61,6 +61,6 @@ export interface ITaskInfo {
   id: TaskId;
   status: TaskStatus;
   type: string;
-  target: string;
+  title: string;
   pTask: TaskId;
 }

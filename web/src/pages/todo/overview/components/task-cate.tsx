@@ -23,7 +23,8 @@ export default class TaskCate extends React.Component<
     let {main} = this.props;
     let {actions} = pageModel;
 
-    let cates = window.checkSdk.dao.taskCateDao.db;
+    // let cates = window.checkSdk.dao.taskCateDao.db;
+    let cates = [];
 
     return (
       <div className="taskCate">
