@@ -9,14 +9,41 @@ export default class Action extends redux.BaseAction<IAllReducerProps> {
     super(pageModel);
   }
 
+  /**
+   * 删除任务;
+   * @param taskId
+   */
+  delYask(taskId:string){
+    window.checkSdk.dao.taskDao.del(taskId);
+    this.reloadDb();
+  }
+
   addTask(title:string) {
     window.checkSdk.dao.taskDao.add({
       id:Date.now()+"",
       title,
     })
+    this.reloadDb();
+  }
 
+  /**
+   * 完成任务,修改任务状态;
+   */
+  finishTask=async ()=>{
+
+  }
+  /**
+   * 记录一个任务完成记录;
+   */
+  oneTaskRecordasync:()=>{
+
+  }
+
+  /**
+   * 重新加载数据
+   */
+  reloadDb(){
     this.commonChange('main.tasks',[...window.checkSdk.dao.taskDao.db]);
-
   }
 }
 
