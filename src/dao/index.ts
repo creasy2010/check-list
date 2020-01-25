@@ -10,11 +10,6 @@ import { readJSON, existsSync} from 'fs-extra';
 import {join} from 'path';
 import {BaseDao} from "./base";
 
-const checkListDir = join(
-  process.env.HOME || process.env.USERPROFILE,
-  '.check-list',
-);
-
 type Id =string;
 type TaskId = Id;
 type TaskCateId = Id;
@@ -37,8 +32,6 @@ export class TaskRecordDao extends BaseDao<IRecord>{
   }
 }
 
-
-
 export interface IRecord{
   id:Id;
   task:ITaskInfo;
@@ -59,8 +52,8 @@ export interface ITaskCate {
 
 export interface ITaskInfo {
   id: TaskId;
+  title: string;
   status: TaskStatus;
   type: string;
-  title: string;
   pTask: TaskId;
 }

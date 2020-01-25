@@ -27,6 +27,9 @@ export default class TaskAdd extends React.Component<
 
     let tasks =  main.tasks;
 
+    // if(!main.tasks || main.tasks.length===0){
+    //   return null;
+    // }
     // let tasks=[{
     //   id:"123123",
     //   title:'teststst',
@@ -36,7 +39,7 @@ export default class TaskAdd extends React.Component<
     //   }
     // ]
     let mainFrame;
-    const todos = tasks;
+    const todos = tasks||[];
 
 
     // var shownTodos = todos.filter((todo) => {
@@ -96,7 +99,7 @@ export default class TaskAdd extends React.Component<
             ref="newField"
             className="new-todo"
             placeholder="What needs to be done?"
-            onKeyDown={ e => this.handleNewTodoKeyDown(e) }
+            onKeyDown={this.handleNewTodoKeyDown}
             autoFocus={true}
           />
         </header>
@@ -104,6 +107,17 @@ export default class TaskAdd extends React.Component<
       </div>
     );
   }
+
+
+  handleNewTodoKeyDown=(e)=>{
+    if(e.key ==='Enter') {
+      debugger;
+      pageModel.actions.action.addTask(e.target.value)
+
+    }
+  }
+
+
 }
 
 //create by moon https://github.com/creasy2010/moon

@@ -30,7 +30,6 @@ let GolbalStore = createStore(
   composedEnhancers,
 );
 
-debugger;
 redux.storeContext.init(GolbalStore,rootReducer);
 
 export default GolbalStore;

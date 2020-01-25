@@ -5,8 +5,8 @@ export const BASE = pageKey + '_';
 export const Command = {
   //通用修改数据方法
   commonChange: BASE + 'commonChange',
-  init: BASE + 'INIT',
-  clean: BASE + 'CLEAN',
+  init: BASE + 'init',
+  clean: BASE + 'clean',
 
   main: {},
 };

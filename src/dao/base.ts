@@ -1,5 +1,5 @@
 import {join} from 'path';
-import {writeJsonSync,readJSONSync,existsSync, readJSON} from "fs-extra";
+import {writeJsonSync,readJSONSync,existsSync, ensureFile, ensureDir, readJSON} from "fs-extra";
 
 /**
  * @desc
@@ -29,6 +29,8 @@ export class BaseDao<T=any> {
       this.db = readJSONSync(this.fileLoc);
     } else {
       this.db = [];
+      await ensureFile(this.fileLoc);
+      this.dump();
     }
 
     process.on('exit', (code) => {
@@ -36,11 +38,12 @@ export class BaseDao<T=any> {
     });
   }
 
-  add(item:T) {
+  add = async (item:T) =>{
     this.db.push(item);
+    await this.dump();
   }
 
-  del(id:string){
+  del(id:string) {
     //@ts-ignore
     this.db=this.db.filter((item)=>item.id!==id);
   }
