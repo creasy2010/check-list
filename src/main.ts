@@ -1,5 +1,5 @@
 import { join } from "path";
-import { app, BrowserWindow, ipcMain, session } from "electron";
+import { app, BrowserWindow ,ipcMain} from "electron";
 
 let mainWindow: Electron.BrowserWindow;
 
@@ -31,9 +31,10 @@ const filter = {
 function createWindow() {
   // Create the browser window.
   mainWindow = new BrowserWindow({
-    fullscreen: true,
-    // height: 600,
+    // fullscreen: true,
+    height: 600,
     webPreferences: {
+      devTools:true,
       contextIsolation: false,
       preload: join(__dirname, "./preload.js"),
       nodeIntegration: true
@@ -57,10 +58,10 @@ function createWindow() {
   // mainWindow.webContents.session.setPreloads(join(__dirname,'./preload.js'));
 
   // and load the index.html of the app.
-  // mainWindow.loadFile(join(__dirname, "../static-web/index.html"));
-  mainWindow.loadURL("http://localhost:8787/");
+  mainWindow.loadFile(join(__dirname, "../static-web/index.html"));
+  // mainWindow.loadURL("http://www.baidu.com");
   // mainWindow.loadURL("https://moon-coder.github.io/");
-  // mainWindow.webContents.openDevTools();
+  mainWindow.webContents.openDevTools();
 
   mainWindow.on("closed", () => {
     // Dereference the window object, usually you would store windows

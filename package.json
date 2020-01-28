@@ -1,15 +1,16 @@
 {
   "name": "check-list",
-  "version": "0.0.7-beta.11",
+  "version": "0.0.7-beta.12",
   "description": "A minimal Electron application written with Typescript",
   "bin": {
-    "moonapp": "lib/main.js"
+    "check-list-cli": "./lib/bin.js"
   },
   "scripts": {
     "test": "jest",
     "build": "tsc",
     "watch": "tsc -w",
     "prepublishOnly": "tsc",
+    "open": "electron ./lib/main.js",
     "lint": "tslint -c tslint.json -p tsconfig.json",
     "start": "npm run build && electron ./lib/main.js"
   },
@@ -27,6 +28,7 @@
   "devDependencies": {
     "@types/fs-extra": "^5.0.5",
     "@types/klaw": "^3.0.0",
+    "@types/uuid": "^3.4.6",
     "jest": "^24.7.1",
     "prettier": "1.16.4",
     "tslint": "^5.10.0"
@@ -42,7 +44,8 @@
     "jsonschema": "^1.2.4",
     "klaw": "^3.0.0",
     "request": "^2.88.0",
-    "urllib": "^2.34.1"
+    "urllib": "^2.34.1",
+    "uuid": "^3.4.0"
   },
   "gitHead": "9c201ea30833f5b90050e5d2eb887ef7a8977109"
 }

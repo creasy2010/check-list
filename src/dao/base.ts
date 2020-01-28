@@ -1,5 +1,7 @@
 import {join} from 'path';
 import {writeJsonSync,readJSONSync,existsSync, ensureFile,ensureFileSync, ensureDir, readJSON} from "fs-extra";
+import {debounce} from  'lodash';
+import {v1} from 'uuid';
 
 /**
  * @desc
@@ -46,15 +48,21 @@ export class BaseDao<T extends IBase> {
   }
 
 
-  public async add (item:T) {
+  public add (item:T) {
     let time =Date.now();
+
+    if(!item.id){
+      item.id =v1();
+    }
+
     this.db.push({createTime:time, ...item});
-    await this.dump();
+    this.dump();
   }
 
   del(id:string) {
     // @ts-ignore
     this.db=this.db.filter((item)=>item.id!==id);
+    this.dump();
   }
 
   async update(id,updateItem:Partial<T>) {
@@ -69,13 +77,14 @@ export class BaseDao<T extends IBase> {
     this.dump();
   }
 
-  dump() {
+  //5秒才会真正被执行;
+  dump=debounce(()=> {
     writeJsonSync(this.fileLoc,this.db,{spaces:2});
-  }
+  },800)
 }
 
 export interface IBase{
-  id:string;
+  id?:string;
   createTime?:number;
   updateTime?:number;
 }

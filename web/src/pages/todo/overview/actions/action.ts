@@ -9,6 +9,23 @@ export default class Action extends redux.BaseAction<IAllReducerProps> {
     super(pageModel);
   }
 
+
+  /**
+   * 提交记录信息;
+   */
+  async submitRecord(toRecordIds,toFinishIds=[]) {
+   let {main:{tasks}} =  this.state;
+
+    toFinishIds.forEach(window.checkSdk.dao.taskDao.finishTask);
+    toRecordIds.forEach((item)=>{
+      window.checkSdk.dao.taskRecordDao.add({
+        taskId:item
+      })
+    });
+
+    await this.reloadDb();
+  }
+
   /**
    * 删除任务;
    * @param taskId
@@ -30,8 +47,7 @@ export default class Action extends redux.BaseAction<IAllReducerProps> {
    * 完成任务,修改任务状态;
    */
   finishTask=async (taskId:string)=>{
-
-    window.checkSdk.dao.taskDao
+    await window.checkSdk.dao.taskDao.finishTask(taskId);
   }
   /**
    * 记录一个任务完成记录;

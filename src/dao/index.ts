@@ -36,9 +36,9 @@ export class TaskDao extends BaseDao<ITaskInfo>{
    * 添加
    * @param item
    */
-  public add=async (item:Partial<ITaskInfo>)=>{
-    let taskInfo= { id:Date.now()+"", status:TaskStatus.init,...item} as ITaskInfo;
-    await super.add(taskInfo);
+  public add=(item:Partial<ITaskInfo>)=>{
+    let taskInfo= { status:TaskStatus.init,...item} as ITaskInfo;
+    super.add(taskInfo);
   }
 }
 
@@ -56,7 +56,6 @@ export class TaskCateDao extends BaseDao<ITaskCate>{
 
 
 export interface IRecord extends IBase{
-  id:Id;
   taskId:Id;
   //备注;
   comment?:string;
