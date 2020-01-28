@@ -5,6 +5,7 @@ import pageModel from '../actions';
 import {connect} from 'react-redux';
 import {store2Props} from '../selectors';
 import {TodoItem} from './todo-item';
+import {Button} from  'antd';
 
 type ITaskAddProps = T.IAllReducerProps & T.ITaskAddProps;
 
@@ -26,33 +27,8 @@ export default class TaskAdd extends React.Component<
 
 
     let tasks =  main.tasks;
-
-    // if(!main.tasks || main.tasks.length===0){
-    //   return null;
-    // }
-    // let tasks=[{
-    //   id:"123123",
-    //   title:'teststst',
-    // },{
-    //   id:"1231233423",
-    //     title:'teststst11',
-    //   }
-    // ]
     let mainFrame;
     const todos = tasks||[];
-
-
-    // var shownTodos = todos.filter((todo) => {
-    //   switch (this.state.nowShowing) {
-    //     case ACTIVE_TODOS:
-    //       return !todo.completed;
-    //     case COMPLETED_TODOS:
-    //       return todo.completed;
-    //     default:
-    //       return true;
-    //   }
-    // });
-
 
     var todoItems = todos.map((todo) => {
       return (
@@ -93,6 +69,9 @@ export default class TaskAdd extends React.Component<
 
     return (
       <div className="taskAdd">
+        <Button type="primary" onClick={()=>{
+          pageModel.commonChange("main.showRecordModel",true);
+        }}>添加记录</Button>
         <header className="header">
           <h1>todos</h1>
           <input

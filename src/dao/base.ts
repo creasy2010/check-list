@@ -1,5 +1,5 @@
 import {join} from 'path';
-import {writeJsonSync,readJSONSync,existsSync, ensureFile, ensureDir, readJSON} from "fs-extra";
+import {writeJsonSync,readJSONSync,existsSync, ensureFile,ensureFileSync, ensureDir, readJSON} from "fs-extra";
 
 /**
  * @desc
@@ -14,7 +14,7 @@ const baseDir: string = join(
   '.check-list',
 );
 
-export class BaseDao<T=any> {
+export class BaseDao<T extends IBase> {
   fileLoc: string;
 
   db:T[];
@@ -24,12 +24,12 @@ export class BaseDao<T=any> {
     this.init();
   }
 
-  init=async ()=> {
+  init=()=> {
     if (existsSync(this.fileLoc)) {
       this.db = readJSONSync(this.fileLoc);
     } else {
       this.db = [];
-      await ensureFile(this.fileLoc);
+       ensureFileSync(this.fileLoc);
       this.dump();
     }
 
@@ -38,21 +38,44 @@ export class BaseDao<T=any> {
     });
   }
 
-  add = async (item:T) =>{
-    this.db.push(item);
+
+  public async findById(id:string){
+    // @ts-ignore
+    let [taskInfo] = this.db.filter((item)=>item.id==id);
+    return taskInfo;
+  }
+
+
+  public async add (item:T) {
+    let time =Date.now();
+    this.db.push({createTime:time, ...item});
     await this.dump();
   }
 
   del(id:string) {
-    //@ts-ignore
+    // @ts-ignore
     this.db=this.db.filter((item)=>item.id!==id);
   }
 
-  update(item:T){
+  async update(id,updateItem:Partial<T>) {
+    let item = await this.findById(id);
+    for (let updateItemKey in updateItem) {
+      if(item.hasOwnProperty(updateItemKey)){
+        item[updateItemKey] = updateItem[updateItemKey];
+      }
+    }
 
+    item.updateTime =Date.now();
+    this.dump();
   }
 
   dump() {
-    writeJsonSync(this.fileLoc,this.db);
+    writeJsonSync(this.fileLoc,this.db,{spaces:2});
   }
+}
+
+export interface IBase{
+  id:string;
+  createTime?:number;
+  updateTime?:number;
 }

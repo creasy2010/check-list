@@ -29,8 +29,9 @@ export default class Action extends redux.BaseAction<IAllReducerProps> {
   /**
    * 完成任务,修改任务状态;
    */
-  finishTask=async ()=>{
+  finishTask=async (taskId:string)=>{
 
+    window.checkSdk.dao.taskDao
   }
   /**
    * 记录一个任务完成记录;

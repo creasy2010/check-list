@@ -8,6 +8,7 @@ import {store2Props} from './selectors';
 import TaskAdd from './components/task-add';
 
 import TaskRecord from './components/task-record';
+import ModelRecord from './components/model-record';
 
 import TaskCate from './components/task-cate';
 
@@ -31,6 +32,7 @@ export default class TodoOverview extends React.Component<
     return (
       <div id="todoOverview" className="todoOverview">
         <TaskAdd/>
+        <ModelRecord/>
         {/*<TaskCate/>*/}
         {/*<TaskRecord/>*/}
       </div>

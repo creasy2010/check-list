@@ -10,6 +10,7 @@
 import * as classNames from 'classnames';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
+import './todo-item.less'
 import {ENTER_KEY, ESCAPE_KEY} from './constants';
 
 class TodoItem extends React.Component<ITodoItemProps, ITodoItemState> {
@@ -31,7 +32,7 @@ class TodoItem extends React.Component<ITodoItemProps, ITodoItemState> {
   }
 
   public handleEdit() {
-    this.props.onEdit();
+    this.props.onEdit && this.props.onEdit();
     this.setState({editText: this.props.todo.title});
   }
 
@@ -85,33 +86,38 @@ class TodoItem extends React.Component<ITodoItemProps, ITodoItemState> {
 
   public render() {
     return (
-      <li
-        className={classNames({
-          completed: this.props.todo.completed,
-          editing: this.props.editing,
-        })}
-      >
-        <div className="view">
+      <div className={"todoItem"} >
+        <li
+          className={classNames({
+            completed: this.props.todo.completed,
+            editing: this.props.editing,
+            todoItem:true,
+          })}
+        >
+          <div className="view">
+            <input
+              className="toggle"
+              type="checkbox"
+              checked={this.props.todo.completed}
+              onChange={this.props.onToggle}
+            />
+            <label onDoubleClick={e => this.handleEdit()}>
+              {this.props.todo.title}
+            </label>
+            <button className="destroy" onClick={this.props.onDestroy} />
+          </div>
           <input
-            className="toggle"
-            type="checkbox"
-            checked={this.props.todo.completed}
-            onChange={this.props.onToggle}
+            ref="editField"
+            className="edit"
+            value={this.state.editText}
+            onBlur={e => this.handleSubmit(e)}
+            onChange={e => this.handleChange(e)}
+            onKeyDown={e => this.handleKeyDown(e)}
           />
-          <label onDoubleClick={e => this.handleEdit()}>
-            {this.props.todo.title}
-          </label>
-          <button className="destroy" onClick={this.props.onDestroy} />
-        </div>
-        <input
-          ref="editField"
-          className="edit"
-          value={this.state.editText}
-          onBlur={e => this.handleSubmit(e)}
-          onChange={e => this.handleChange(e)}
-          onKeyDown={e => this.handleKeyDown(e)}
-        />
-      </li>
+        </li>
+
+      </div>
+
     );
   }
 }

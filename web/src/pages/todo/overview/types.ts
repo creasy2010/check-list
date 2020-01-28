@@ -2,6 +2,7 @@ export interface IMainReducer {
   isReady: boolean;
   isLoading?: boolean;
   tasks:any[];
+  showRecordModel:boolean
 }
 
 export type IAllReducerProps = {
@@ -12,6 +13,11 @@ export type IAllReducerProps = {
 
 export type ITaskAddProps = {};
 export type ITaskAddState = {};
+export type IModelRecordProps = {};
+export type IModelRecordState = {
+  toFinishIds:string[];
+  toRecordIds:string[];
+};
 
 export type ITaskRecordProps = {};
 export type ITaskRecordState = {};
