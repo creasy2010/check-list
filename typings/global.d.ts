@@ -6,7 +6,7 @@
  * @coder.yang2010@gmail.com
  * @Date    2020/1/29
  **/
-import {IBase} from "../src/dao/base";
+import {IBase} from "../src/dao/array-base";
 
 export type Id = string;
 
@@ -18,6 +18,24 @@ export interface IRecord extends IBase {
   //备注;
   comment?: string;
 }
+
+
+export interface TongjiDayItem{
+  morning:number;
+  afterNoonn:number;
+  night:number;
+  total:number;
+}
+
+export interface ITongJi extends IBase {
+  days:{
+    [dayOfTime:string]:TongjiDayItem;
+  }
+  months:{
+    [monthYears:string]:any;
+  };
+}
+
 
 export interface ITaskCate extends IBase {
   id: TaskCateId;

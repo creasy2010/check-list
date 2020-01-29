@@ -2,6 +2,7 @@ import {join} from 'path';
 import {writeJsonSync,readJSONSync,existsSync, ensureFile,ensureFileSync, ensureDir, readJSON} from "fs-extra";
 import {debounce} from  'lodash';
 import {v1} from 'uuid';
+import {baseDir} from  './const';
 
 /**
  * @desc
@@ -11,10 +12,6 @@ import {v1} from 'uuid';
  * @coder.yang2010@gmail.com
  * @Date    2020/1/10
  **/
-const baseDir: string = join(
-  process.env.HOME || process.env.USERPROFILE,
-  '.check-list',
-);
 
 export class BaseDao<T extends IBase> {
   fileLoc: string;

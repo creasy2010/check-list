@@ -70,9 +70,18 @@ export default class TaskAdd extends React.Component<
 
     return (
       <div className="taskAdd">
-        <Button type="primary" onClick={()=>{
-          pageModel.commonChange("main.showRecordModel",true);
-        }}>添加记录</Button>
+        <div className={"top"}>
+          <div>
+            <div>morning:1</div>
+            <div>afternoon:1</div>
+            <div>night:1</div>
+          </div>
+
+          <Button type="primary" className={"btn"} onClick={()=>{
+            pageModel.commonChange("main.showRecordModel",true);
+          }}>添加记录</Button>
+        </div>
+
         <header className="header">
           <h1>todos</h1>
           <input
