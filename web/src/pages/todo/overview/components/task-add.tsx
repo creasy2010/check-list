@@ -28,11 +28,12 @@ export default class TaskAdd extends React.Component<
     let tasks =  main.tasks;
     let mainFrame;
     const todos = tasks||[];
+    debugger;
 
     var todoItems = todos.map((todo) => {
       return (
         <TodoItem
-          key={todo.id}
+          key={todo.id+todo.records}
           todo={todo}
           onDel={this.delItem}
           // onToggle={this.toggle.bind(this, todo)}
@@ -89,15 +90,13 @@ export default class TaskAdd extends React.Component<
 
 
   delItem=async (todoItem)=>{
-    debugger;
+
    await pageModel.actions.action.delTask(todoItem.id);
   }
 
   handleNewTodoKeyDown=(e)=>{
     if(e.key ==='Enter') {
-      debugger;
       pageModel.actions.action.addTask(e.target.value);
-
     }
   }
 

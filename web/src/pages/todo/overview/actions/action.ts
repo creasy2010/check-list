@@ -65,7 +65,7 @@ export default class Action extends redux.BaseAction<IAllReducerProps> {
     let records:IRecord = window.checkSdk.dao.taskRecordDao.db;
     let group = groupBy(records,(record)=>record.taskId);
     let tasks:ITaskInfoExt =window.checkSdk.dao.taskDao.db.map((taskInfo:ITaskInfo)=>{
-      return {...taskInfo,records:group[taskInfo.id]||0}
+      return {...taskInfo,records:(group[taskInfo.id]||[]).length}
     });
 
     this.commonChange('main',(main:IMainReducer)=>{

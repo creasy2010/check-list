@@ -54,6 +54,15 @@ class TodoItem extends React.Component<ITodoItemProps, ITodoItemState> {
     };
   }
 
+  componentWillReceiveProps(nextProps: Readonly<ITodoItemProps>, nextContext: any): void {
+
+    if(nextProps.todo.records !==this.props.todo.records){
+      this.setState({
+        todo:{...this.state.todo,records:nextProps.todo.records}
+      })
+    }
+  }
+
   public render() {
     let {model}  =this.props;
 
@@ -111,7 +120,7 @@ class TodoItem extends React.Component<ITodoItemProps, ITodoItemState> {
    */
   private toggleSelect=()=>{
     this.setState({selected:!this.state.selected},()=>{
-      this.props.onSelect && this.props.onSelect(this.props.todo,this.state.selecte);
+      this.props.onSelect && this.props.onSelect(this.props.todo,this.state.selected);
     });
   }
 

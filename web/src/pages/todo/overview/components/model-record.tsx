@@ -22,7 +22,6 @@ export default class ModelRecord extends React.Component<
     }
   }
   render() {
-    debugger;
     let {main} = this.props;
     if (!main.showRecordModel) {
       return null;
@@ -95,5 +94,6 @@ export default class ModelRecord extends React.Component<
   handleOk = async () => {
    await pageModel.actions.action.submitRecord(this.state.toRecordIds,this.state.toFinishIds);
    pageModel.commonChange('main.showRecordModel', false);
+   this.setState({toRecordIds:[],toFinishIds:[]})
   };
 }
