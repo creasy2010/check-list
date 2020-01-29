@@ -17,10 +17,12 @@ export class JsonBaseDao<T=any>{
   fileLoc: string;
   data:T;
 
+  _defautValue;
+
   constructor(key: string,defaultValue:T) {
     this.fileLoc = join(baseDir, key+".json");
     this.init();
-    this.data=defaultValue;
+    this._defautValue=defaultValue;
   }
 
   init=()=> {
@@ -28,6 +30,7 @@ export class JsonBaseDao<T=any>{
       this.data = readJSONSync(this.fileLoc);
     } else {
       ensureFileSync(this.fileLoc);
+      this.data=this._defautValue;
       this.dump();
     }
     process.on('exit', (code) => {

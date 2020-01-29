@@ -1,6 +1,6 @@
 {
   "name": "check-list-app",
-  "version": "0.0.7-beta.13",
+  "version": "0.0.7-beta.14",
   "description": "A minimal Electron application written with Typescript",
   "bin": {
     "check-list-cli": "./lib/bin.js"
