@@ -1,7 +1,10 @@
+import {IRecord, ITaskInfo} from "../../../../../typings/global";
+
 export interface IMainReducer {
   isReady: boolean;
   isLoading?: boolean;
-  tasks:any[];
+  tasks:ITaskInfoExt[];
+  records:IRecord[];
   showRecordModel:boolean
 }
 
@@ -24,5 +27,10 @@ export type ITaskRecordState = {};
 
 export type ITaskCateProps = {};
 export type ITaskCateState = {};
+
+export interface  ITaskInfoExt extends ITaskInfo{
+  //完成记录数量;
+  records:number;
+}
 
 //create by moon https://github.com/creasy2010/moon

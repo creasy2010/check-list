@@ -1,8 +1,10 @@
 import {Command} from '../constant';
-import {IAllReducerProps} from '../types';
+import {IAllReducerProps, IMainReducer, ITaskInfoExt} from '../types';
 import {redux} from 'moon-runtime';
 import {PageModel} from './index';
 import api from '@/api';
+import {groupBy} from 'lodash';
+import {IRecord, ITaskInfo} from "../../../../../../typings/global";
 
 export default class Action extends redux.BaseAction<IAllReducerProps> {
   constructor(pageModel: PageModel) {
@@ -59,8 +61,18 @@ export default class Action extends redux.BaseAction<IAllReducerProps> {
   /**
    * 重新加载数据
    */
-  reloadDb(){
-    this.commonChange('main.tasks',[...window.checkSdk.dao.taskDao.db]);
+  reloadDb() {
+    let records:IRecord = window.checkSdk.dao.taskRecordDao.db;
+    let group = groupBy(records,(record)=>record.taskId);
+    let tasks:ITaskInfoExt =window.checkSdk.dao.taskDao.db.map((taskInfo:ITaskInfo)=>{
+      return {...taskInfo,records:group[taskInfo.id]||0}
+    });
+
+    this.commonChange('main',(main:IMainReducer)=>{
+      main.tasks =[...tasks];
+      main.records =[...records];
+      return main;
+    });
   }
 }
 

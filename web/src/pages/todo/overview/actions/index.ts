@@ -20,11 +20,12 @@ export class PageModel extends redux.BaseModel<IAllReducerProps> {
    * 初始化数据
    */
   async init() {
-    let tasks = window.checkSdk.dao.taskDao.db;
+    this.actions.action.reloadDb();
     this.emit(Command.init, {
-      main : {
-        tasks:  [...tasks]
-      },
+      // main : {
+      //   tasks:  [...tasks],
+      //   records:[...records],
+      // },
     });
   }
 }

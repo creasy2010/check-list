@@ -25,7 +25,6 @@ export default class TaskAdd extends React.Component<
     let {main} = this.props;
     let {actions} = pageModel;
 
-
     let tasks =  main.tasks;
     let mainFrame;
     const todos = tasks||[];

@@ -77,7 +77,7 @@ class TodoItem extends React.Component<ITodoItemProps, ITodoItemState> {
               onChange={this.toggleComplete}
             />
             <label onClick={this.toggleSelect} onDoubleClick={e => this.handleEdit()}>
-              {todo.title}
+              {`[${todo.records}] - ${todo.title}`}
             </label>
             <button className="destroy" onClick={this.del} />
           </div>

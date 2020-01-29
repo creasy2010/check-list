@@ -4,6 +4,7 @@ import {IMainReducer} from '../types';
 export const INITIAL_STATE: IMainReducer = {
   isReady: false,
   tasks:[],
+  records:[],
   showRecordModel:false
 };
 
