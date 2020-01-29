@@ -6,7 +6,6 @@
  * @coder.yang2010@gmail.com
  * @Date    2020/1/10
  **/
-console.log('path:',__dirname);
 import {BaseDao} from "./base";
 import { IRecord, ITaskCate, ITaskInfo} from "../../typings/global";
 
