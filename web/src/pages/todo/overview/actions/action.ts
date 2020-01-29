@@ -30,7 +30,7 @@ export default class Action extends redux.BaseAction<IAllReducerProps> {
    * 删除任务;
    * @param taskId
    */
-  delYask(taskId:string){
+  delTask(taskId:string){
     window.checkSdk.dao.taskDao.del(taskId);
     this.reloadDb();
   }

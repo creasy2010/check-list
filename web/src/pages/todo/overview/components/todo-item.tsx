@@ -79,7 +79,7 @@ class TodoItem extends React.Component<ITodoItemProps, ITodoItemState> {
             <label onClick={this.toggleSelect} onDoubleClick={e => this.handleEdit()}>
               {todo.title}
             </label>
-            <button className="destroy" onClick={this.props.onDel} />
+            <button className="destroy" onClick={this.del} />
           </div>
           <input
             ref="editField"
@@ -92,6 +92,10 @@ class TodoItem extends React.Component<ITodoItemProps, ITodoItemState> {
         </li>
       </div>
     );
+  }
+
+  private del=()=>{
+    this.props.onDel && this.props.onDel(this.props.todo);
   }
 
   private toggleComplete=()=>{

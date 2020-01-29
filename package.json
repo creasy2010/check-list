@@ -1,5 +1,5 @@
 {
-  "name": "check-list",
+  "name": "check-list-app",
   "version": "0.0.7-beta.12",
   "description": "A minimal Electron application written with Typescript",
   "bin": {

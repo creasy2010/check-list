@@ -45,12 +45,15 @@ export default class ModelRecord extends React.Component<
 
     return (
       <Modal
+        className={"modelRecord"}
         title="完成一次冲锋"
         visible={main.showRecordModel}
         onOk={this.handleOk}
         onCancel={this.handleCancel}
       >
-        {todoItems}
+        <ul className={"list"}>
+          {todoItems}
+        </ul>
       </Modal>
     );
   }
