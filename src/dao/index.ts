@@ -20,7 +20,7 @@ class TaskDao extends BaseDao<ITaskInfo>{
    * 完成任务;
    * @param taskId
    */
-  async finishTask(taskId:string) {
+   finishTask=async (taskId:string) => {
     let taskInfo =await this.findById(taskId);
     if(taskInfo) {
       taskInfo.status =TaskStatus.did;
@@ -47,7 +47,7 @@ export const taskDao =  new TaskDao();
     super('task-record');
   }
 
-  add(item: IRecord) {
+  add=(item: IRecord) =>{
     super.add(item);
     //添加到统计记录中去;
     tongjiDao.addOneRecord();
@@ -95,9 +95,9 @@ class  TongjiDao extends JsonBaseDao<ITongJi>{
   let key =`${current.getFullYear()}-${current.getMonth()}-${current.getDay()}`
    let hour = current.getHours();
    let tarProper = "morning";
-    if(hour>12 && hour < 18) {
+    if(hour>=12 && hour < 19) {
       tarProper="afterNoonn"
-    }else if(hour>19) {
+    }else if(hour>=19) {
       tarProper="night"
     }
 

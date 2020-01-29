@@ -6,7 +6,6 @@ import {connect} from 'react-redux';
 import {store2Props} from '../selectors';
 import * as T from '../types';
 import {TodoItem} from './todo-item';
-
 type IModelRecordProps = T.IAllReducerProps & T.IModelRecordProps;
 
 @connect<Partial<IModelRecordProps>, T.IModelRecordState>(store2Props)
@@ -31,7 +30,8 @@ export default class ModelRecord extends React.Component<
 
     let tasks = main.tasks || [];
 
-    var todoItems = tasks.map(todo => {
+    var todoItems = tasks.filter(item=>item.status!==3)
+      .map(todo => {
       return (
         <TodoItem
           key={todo.id}

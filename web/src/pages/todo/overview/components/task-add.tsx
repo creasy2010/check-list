@@ -30,7 +30,8 @@ export default class TaskAdd extends React.Component<
     const todos = tasks||[];
     debugger;
 
-    var todoItems = todos.map((todo) => {
+    var todoItems = todos.filter(item=>item.status!==3)
+      .map((todo) => {
       return (
         <TodoItem
           key={todo.id+todo.records}
@@ -72,10 +73,10 @@ export default class TaskAdd extends React.Component<
       <div className="taskAdd">
         <div className={"top"}>
           <div>
-            <div>morning:{main.tongji.current.morning}/{main.tongji.last.morning}</div>
-            <div>afternoon:{main.tongji.current.afterNoonn}/{main.tongji.last.afterNoonn}</div>
-            <div>night:{main.tongji.current.night}/{main.tongji.last.night}</div>
-            <div>total:{main.tongji.current.total}/{main.tongji.last.total}</div>
+            <div>morning:<br/>{main.tongji.current.morning}/{main.tongji.last.morning}</div>
+            <div>afternoon:<br/>{main.tongji.current.afterNoonn}/{main.tongji.last.afterNoonn}</div>
+            <div>night:<br/>{main.tongji.current.night}/{main.tongji.last.night}</div>
+            <div>total:<br/>{main.tongji.current.total}/{main.tongji.last.total}</div>
           </div>
 
           <Button type="primary" className={"btn"} onClick={()=>{

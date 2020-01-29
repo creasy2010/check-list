@@ -74,7 +74,7 @@ class TodoItem extends React.Component<ITodoItemProps, ITodoItemState> {
         })} >
         <li
           className={classNames({
-            completed: todo.completed,
+            completed: todo.status===3,
             editing: model==='edit',
           })}
         >
@@ -82,7 +82,7 @@ class TodoItem extends React.Component<ITodoItemProps, ITodoItemState> {
             <input
               className="toggle"
               type="checkbox"
-              checked={todo.completed}
+              checked={todo.status===3}
               onChange={this.toggleComplete}
             />
             <label onClick={this.toggleSelect} onDoubleClick={e => this.handleEdit()}>
@@ -107,10 +107,13 @@ class TodoItem extends React.Component<ITodoItemProps, ITodoItemState> {
     this.props.onDel && this.props.onDel(this.props.todo);
   }
 
-  private toggleComplete=()=>{
+  private toggleComplete=(e)=>{
+    debugger;
+    let checked = e.target.checked;
+    let status  = checked?3:0;
     let todo =this.state.todo;
-    this.setState({todo:{...todo,completed:!todo.completed}},()=>{
-      this.props.onComplete && this.props.onComplete(this.props.todo);
+    this.setState({todo:{...todo,status}},()=>{
+      this.props.onComplete && this.props.onComplete(this.props.todo,checked);
     });
   }
 
