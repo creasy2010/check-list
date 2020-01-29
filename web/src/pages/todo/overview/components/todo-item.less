@@ -10,6 +10,13 @@
     border-bottom: 1px solid #ededed;
   }
 
+  li .view{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
    li:last-child {
     border-bottom: none;
   }
@@ -109,8 +116,36 @@
    li.editing:last-child {
     margin-bottom: -1px;
   }
+
+  .top{
+    display: none;
+  }
+  .topCancel{
+    color: cornflowerblue;
+  }
+
+  li .btns{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  li .hoverBtns{
+    display: none;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  li:hover .hoverBtns{
+    display: flex;
+  }
 }
 
+.todoItem:hover .top{
+  display: block;
+}
 .todoItem.selected{
   background-color: deepskyblue;
 }

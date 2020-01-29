@@ -10,6 +10,7 @@
 import * as classNames from 'classnames';
 import * as React from 'react';
 import './todo-item.less'
+import {Icon} from "antd";
 import {ENTER_KEY, ESCAPE_KEY} from './constants';
 
 export interface ITodoItem{
@@ -27,7 +28,9 @@ export interface ITodoItemProps{
   editable?:boolean;
   //是否选中状态
   isSelected?:boolean;
-  onDel?:(todoItem)=>void;
+  onDel?:(todoItem:ITodoItem)=>void;
+  onTop?:(Item:ITodoItem)=>void;
+  onCancelTop?:(Item:ITodoItem)=>void;
   onSelect?:(todoItem:ITodoItem,selected:boolean)=>void;
   onComplete?:(todoItem:ITodoItem)=>void;
   todo:ITodoItem;
@@ -85,10 +88,20 @@ class TodoItem extends React.Component<ITodoItemProps, ITodoItemState> {
               checked={todo.status===3}
               onChange={this.toggleComplete}
             />
-            <label onClick={this.toggleSelect} onDoubleClick={e => this.handleEdit()}>
-              {`[${todo.records}] - ${todo.title}`}
+            <label onClick={this.toggleSelect} onDoubleClick={this.handleEdit}>
+              {`[${todo.records}/${todo.targetRecords|| "3"}] - ${todo.title}`}
             </label>
-            <button className="destroy" onClick={this.del} />
+            <div className={"btns"}>
+              <div className={"hoverBtns"}>
+                <Icon type="close" onClick={this.del} />
+                {todo.isTop?null:
+                  <Icon className={"top"} onClick={this.onTop} type="pushpin" />}
+              </div>
+              <div className={"fixBtns"}>
+                {todo.isTop?<Icon className={"topCancel"} onClick={this.onCancelTop} type="pushpin" />:
+                  null}
+              </div>
+            </div>
           </div>
           <input
             ref="editField"
@@ -103,12 +116,19 @@ class TodoItem extends React.Component<ITodoItemProps, ITodoItemState> {
     );
   }
 
+  private onTop=()=>{
+    this.props.onTop &&this.props.onTop(this.props.todo);
+  }
+
+  private onCancelTop=()=>{
+    this.props.onCancelTop &&this.props.onCancelTop(this.props.todo);
+  }
+
   private del=()=>{
     this.props.onDel && this.props.onDel(this.props.todo);
   }
 
   private toggleComplete=(e)=>{
-    debugger;
     let checked = e.target.checked;
     let status  = checked?3:0;
     let todo =this.state.todo;

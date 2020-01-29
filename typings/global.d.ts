@@ -45,8 +45,14 @@ export interface ITaskCate extends IBase {
 export interface ITaskInfo extends IBase {
   id: TaskId;
   title: string;
+  tags?:string[];
+  targetRecords?:number;
   status: TaskStatus;
+  //排序字段; 为空时则取createtime字段值;
+  order?:number;
+  //是否置顶;
+  isTop?:boolean;
   tags: string;
-  pTask: TaskId;
+  pTask?: TaskId;
 }
 

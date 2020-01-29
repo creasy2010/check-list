@@ -37,11 +37,18 @@ export default class Action extends redux.BaseAction<IAllReducerProps> {
     this.reloadDb();
   }
 
-  addTask(title:string) {
-    window.checkSdk.dao.taskDao.add({
-      id:Date.now()+"",
-      title,
-    })
+  top=(task:ITaskInfoExt) =>{
+    window.checkSdk.dao.taskDao.topTask(task.id);
+    this.reloadDb();
+  }
+
+  cancelTop=(task:ITaskInfoExt)=>{
+    window.checkSdk.dao.taskDao.cancelTopTask(task.id);
+    this.reloadDb();
+  }
+
+  addTask(task:Partial<ITaskInfo>) {
+    window.checkSdk.dao.taskDao.add(task);
     this.reloadDb();
   }
 

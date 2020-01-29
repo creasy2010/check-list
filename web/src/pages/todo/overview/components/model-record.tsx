@@ -31,6 +31,9 @@ export default class ModelRecord extends React.Component<
     let tasks = main.tasks || [];
 
     var todoItems = tasks.filter(item=>item.status!==3)
+      .sort(((a,b)=>{
+        return  ((b.order||0)+(b.isTop?1000000000000:0))-((a.order||0)+(a.isTop?1000000000000:0));
+      }))
       .map(todo => {
       return (
         <TodoItem

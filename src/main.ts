@@ -61,7 +61,7 @@ function createWindow() {
   mainWindow.loadFile(join(__dirname, "../static-web/index.html"));
   // mainWindow.loadURL("http://www.baidu.com");
   // mainWindow.loadURL("https://moon-coder.github.io/");
-  mainWindow.webContents.openDevTools();
+  // mainWindow.webContents.openDevTools();
 
   mainWindow.on("closed", () => {
     // Dereference the window object, usually you would store windows

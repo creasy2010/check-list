@@ -5,7 +5,7 @@ import pageModel from '../actions';
 import {connect} from 'react-redux';
 import {store2Props} from '../selectors';
 import {TodoItem} from './todo-item';
-import {Button} from  'antd';
+import {Button,Icon} from  'antd';
 
 type ITaskAddProps = T.IAllReducerProps & T.ITaskAddProps;
 
@@ -28,15 +28,19 @@ export default class TaskAdd extends React.Component<
     let tasks =  main.tasks;
     let mainFrame;
     const todos = tasks||[];
-    debugger;
 
-    var todoItems = todos.filter(item=>item.status!==3)
+    let todoItems = todos.filter(item=>item.status!==3)
+      .sort(((a,b)=>{
+        return  ((b.order||0)+(b.isTop?1000000000000:0))-((a.order||0)+(a.isTop?1000000000000:0));
+      }))
       .map((todo) => {
       return (
         <TodoItem
           key={todo.id+todo.records}
           todo={todo}
           onDel={this.delItem}
+          onTop={actions.action.top}
+          onCancelTop={actions.action.cancelTop}
           // onToggle={this.toggle.bind(this, todo)}
           // onDestroy={this.destroy.bind(this, todo)}
           // onEdit={this.edit.bind(this, todo)}
@@ -79,9 +83,9 @@ export default class TaskAdd extends React.Component<
             <div>total:<br/>{main.tongji.current.total}/{main.tongji.last.total}</div>
           </div>
 
-          <Button type="primary" className={"btn"} onClick={()=>{
+          <Icon className={"btn"} type="check" onClick={()=>{
             pageModel.commonChange("main.showRecordModel",true);
-          }}>添加记录</Button>
+          }} />
         </div>
 
         <header className="header">
@@ -89,7 +93,7 @@ export default class TaskAdd extends React.Component<
           <input
             ref="newField"
             className="new-todo"
-            placeholder="What needs to be done?"
+            placeholder="[... #tags] [=targetRecords] topic"
             onKeyDown={this.handleNewTodoKeyDown}
             autoFocus={true}
           />
@@ -101,13 +105,41 @@ export default class TaskAdd extends React.Component<
 
 
   delItem=async (todoItem)=>{
-
    await pageModel.actions.action.delTask(todoItem.id);
   }
 
   handleNewTodoKeyDown=(e)=>{
     if(e.key ==='Enter') {
-      pageModel.actions.action.addTask(e.target.value);
+      let title=e.target.value;
+      let items =  title.split(/ +/);
+
+      let tags = [], targetRecords;
+      for (let i = 0, iLen = items.length; i < iLen; i++) {
+        let item = items[i].trim();
+
+        if(item.startsWith("#")) {
+          title=title.replace(item,"");
+          tags.push(item.replace("#",""));
+        }
+
+        if(item.startsWith("=")) {
+          let reg = /=([0-9]+)/ig;
+
+          if(reg.test(item)) {
+            title=title.replace(item,"");
+            let [_,num]  = item.match(reg);
+            targetRecords=num;
+          }
+          targetRecords=item.replace("=","")
+        }
+      }
+
+
+      pageModel.actions.action.addTask({
+        tags,
+        targetRecords,
+        title:title.trim()
+      });
     }
   }
 

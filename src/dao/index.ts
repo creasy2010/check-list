@@ -16,6 +16,26 @@ class TaskDao extends BaseDao<ITaskInfo>{
     super('task');
   }
 
+  topTask=async (taskId:string)=>{
+    let taskInfo  =await this.findById(taskId);
+    if(taskInfo) {
+      taskInfo.isTop=true;
+      taskInfo.order=Date.now();
+    }
+
+    this.update(taskId,taskInfo);
+  }
+
+  cancelTopTask=async (taskId:string)=>{
+    let taskInfo  =await this.findById(taskId);
+    if(taskInfo) {
+      taskInfo.isTop=false;
+      taskInfo.order=Date.now()
+    }
+
+    this.update(taskId,taskInfo);
+  }
+
   /**
    * 完成任务;
    * @param taskId
@@ -34,7 +54,7 @@ class TaskDao extends BaseDao<ITaskInfo>{
    * @param item
    */
   public add=(item:Partial<ITaskInfo>)=>{
-    let taskInfo= { status:TaskStatus.init,...item} as ITaskInfo;
+    let taskInfo= { status:TaskStatus.init,...item,order:Date.now()} as ITaskInfo;
     super.add(taskInfo);
   }
 }
@@ -97,7 +117,7 @@ class  TongjiDao extends JsonBaseDao<ITongJi>{
    let tarProper = "morning";
     if(hour>=12 && hour < 19) {
       tarProper="afterNoonn"
-    }else if(hour>=19) {
+    } else if(hour>=19) {
       tarProper="night"
     }
 
