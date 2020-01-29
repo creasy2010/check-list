@@ -4,7 +4,7 @@ import {redux} from 'moon-runtime';
 import {PageModel} from './index';
 import api from '@/api';
 import {groupBy} from 'lodash';
-import {IRecord, ITaskInfo} from "../../../../../../typings/global";
+import {IRecord, ITaskInfo, ITongJi} from "../../../../../../typings/global";
 
 export default class Action extends redux.BaseAction<IAllReducerProps> {
   constructor(pageModel: PageModel) {
@@ -63,6 +63,10 @@ export default class Action extends redux.BaseAction<IAllReducerProps> {
    */
   reloadDb() {
     let records:IRecord = window.checkSdk.dao.taskRecordDao.db;
+    let tongjiDao = window.checkSdk.dao.tongjiDao;
+    let current =   tongjiDao.getDayTonji();
+    let yestoday  =   tongjiDao.getDayTonji(new Date(-1));
+
     let group = groupBy(records,(record)=>record.taskId);
     let tasks:ITaskInfoExt =window.checkSdk.dao.taskDao.db.map((taskInfo:ITaskInfo)=>{
       return {...taskInfo,records:(group[taskInfo.id]||[]).length}
@@ -71,6 +75,10 @@ export default class Action extends redux.BaseAction<IAllReducerProps> {
     this.commonChange('main',(main:IMainReducer)=>{
       main.tasks =[...tasks];
       main.records =[...records];
+      main.tongji={
+        current:{...current},
+        last:{...yestoday}
+      };
       return main;
     });
   }

@@ -7,7 +7,7 @@
  * @Date    2020/1/10
  **/
 import {BaseDao} from "./array-base";
-import {IRecord, ITaskCate, ITaskInfo, ITongJi} from "../../typings/global";
+import {IRecord, ITaskCate, ITaskInfo, ITongJi, TongjiDayItem} from "../../typings/global";
 import {JsonBaseDao} from "./json-base";
 
 
@@ -72,6 +72,19 @@ class  TongjiDao extends JsonBaseDao<ITongJi>{
       days:{},
       months:{}
     });
+  }
+
+  getDayTonji(date:Date=new Date()):TongjiDayItem{
+    let current = date;
+    let key =`${current.getFullYear()}-${current.getMonth()}-${current.getDay()}`
+
+    let tongjiday =  this.data.days[key];
+
+    if(!tongjiday) {
+      this.data.days[key] ={total:0,night:0,afterNoonn:0,morning:0};
+      tongjiday =this.data.days[key];
+    }
+    return tongjiday;
   }
 
   /**

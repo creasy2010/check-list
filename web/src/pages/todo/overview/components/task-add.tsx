@@ -72,9 +72,10 @@ export default class TaskAdd extends React.Component<
       <div className="taskAdd">
         <div className={"top"}>
           <div>
-            <div>morning:1</div>
-            <div>afternoon:1</div>
-            <div>night:1</div>
+            <div>morning:{main.tongji.current.morning}/{main.tongji.last.morning}</div>
+            <div>afternoon:{main.tongji.current.afterNoonn}/{main.tongji.last.afterNoonn}</div>
+            <div>night:{main.tongji.current.night}/{main.tongji.last.night}</div>
+            <div>total:{main.tongji.current.total}/{main.tongji.last.total}</div>
           </div>
 
           <Button type="primary" className={"btn"} onClick={()=>{

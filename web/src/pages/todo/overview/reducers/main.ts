@@ -5,6 +5,10 @@ export const INITIAL_STATE: IMainReducer = {
   isReady: false,
   tasks:[],
   records:[],
+  tongji:{
+    current:{},
+    last:{}
+  },
   showRecordModel:false
 };
 

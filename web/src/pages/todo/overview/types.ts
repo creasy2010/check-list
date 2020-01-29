@@ -1,10 +1,14 @@
-import {IRecord, ITaskInfo} from "../../../../../typings/global";
+import {IRecord, ITaskInfo, ITongJi, TongjiDayItem} from "../../../../../typings/global";
 
 export interface IMainReducer {
   isReady: boolean;
   isLoading?: boolean;
   tasks:ITaskInfoExt[];
   records:IRecord[];
+  tongji:{
+    current:TongjiDayItem;
+    last:TongjiDayItem;
+  };
   showRecordModel:boolean
 }
 
