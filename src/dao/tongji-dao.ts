@@ -32,7 +32,6 @@ class TongjiDao extends JsonBaseDao<ITongJi> {
     let current = date;
     let key = `${current.getFullYear()}-${current.getMonth()}-${current.getDate()}`
 
-    debugger;
     let tongjiday = this.data.days[key];
 
     if (!tongjiday) {
