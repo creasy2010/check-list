@@ -46,7 +46,7 @@ class TongjiDao extends JsonBaseDao<ITongJi> {
    */
   addOneRecord() {
     let current = new Date();
-    let key = `${current.getFullYear()}-${current.getMonth()}-${current.getDay()}`
+    let key = `${current.getFullYear()}-${current.getMonth()}-${current.getDate()}`
     let hour = current.getHours();
     let tarProper = "morning";
     if (hour >= 12 && hour < 19) {
