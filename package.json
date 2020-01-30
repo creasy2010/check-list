@@ -25,14 +25,16 @@
   "author": "GitHub",
   "license": "CC0-1.0",
   "devDependencies": {
-    "electron-rebuild": "^1.8.8",
-    "electron-builder": "^21.2.0",
-    "electron": "^7.1.9",
     "@types/fs-extra": "^5.0.5",
+    "@types/jest": "^25.1.1",
     "@types/klaw": "^3.0.0",
     "@types/uuid": "^3.4.6",
-    "jest": "^24.7.1",
+    "electron": "^7.1.9",
+    "electron-builder": "^21.2.0",
+    "electron-rebuild": "^1.8.8",
+    "jest": "^24.9.0",
     "prettier": "1.16.4",
+    "ts-jest": "^25.0.0",
     "tslint": "^5.10.0"
   },
   "dependencies": {

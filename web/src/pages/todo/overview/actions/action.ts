@@ -72,7 +72,7 @@ export default class Action extends redux.BaseAction<IAllReducerProps> {
     let records:IRecord = window.checkSdk.dao.taskRecordDao.db;
     let tongjiDao = window.checkSdk.dao.tongjiDao;
     let current =   tongjiDao.getDayTonji();
-    let yestoday  =   tongjiDao.getDayTonji(new Date(-1));
+    let yestoday  =   tongjiDao.getDayTonji(-1);
 
     let group = groupBy(records,(record)=>record.taskId);
     let tasks:ITaskInfoExt =window.checkSdk.dao.taskDao.db.map((taskInfo:ITaskInfo)=>{
