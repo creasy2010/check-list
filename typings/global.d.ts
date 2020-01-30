@@ -27,7 +27,11 @@ export interface TongjiDayItem{
   total:number;
 }
 
-export interface ITongJi extends IBase {
+export interface IConfig {
+  uri:string;//http or local-html
+}
+
+export interface ITongJi {
   days:{
     [dayOfTime:string]:TongjiDayItem;
   }

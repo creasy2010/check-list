@@ -11,7 +11,7 @@
     "prepublishOnly": "tsc",
     "open": "electron ./lib/main.js",
     "lint": "tslint -c tslint.json -p tsconfig.json",
-    "start": "npm run build && electron ./lib/main.js"
+    "start": "npm run build &&cross-env  NODE_ENV=development  electron ./lib/main.js"
   },
   "repository": "https://github.com/electron/electron-quick-start-typescript",
   "keywords": [
@@ -29,6 +29,7 @@
     "@types/jest": "^25.1.1",
     "@types/klaw": "^3.0.0",
     "@types/uuid": "^3.4.6",
+    "cross-env": "^7.0.0",
     "electron": "^7.1.9",
     "electron-builder": "^21.2.0",
     "electron-rebuild": "^1.8.8",

@@ -9,5 +9,5 @@
 import {tongjiDao} from  '../tongji-dao';
 
 it('should 取昨天统计数据', function () {
-  console.log(tongjiDao.getDayTonji(new Date(-1)))
+  console.log(tongjiDao.getDayTonji(-1))
 });
