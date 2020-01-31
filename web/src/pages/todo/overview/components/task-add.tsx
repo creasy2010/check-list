@@ -5,8 +5,9 @@ import pageModel from '../actions';
 import {connect} from 'react-redux';
 import {store2Props} from '../selectors';
 import {TodoItem} from './todo-item';
-import {Button, Icon} from 'antd';
+import {Button, Icon,Modal} from 'antd';
 import ColorFont from './sub/color-font';
+import {ITaskInfo} from "../../../../../../typings/global";
 
 type ITaskAddProps = T.IAllReducerProps & T.ITaskAddProps;
 
@@ -15,8 +16,13 @@ export default class TaskAdd extends React.Component<
   Partial<ITaskAddProps>,
   T.ITaskAddState
 > {
+
+  inputref;
+  state={};
+
   constructor(props: ITaskAddProps) {
     super(props);
+    this.inputref= React.createRef();
   }
 
   /**
@@ -141,16 +147,25 @@ export default class TaskAdd extends React.Component<
             />
           </ColorFont>
         </div>
-
         <header className="header">
           <h1>todos</h1>
           <input
-            ref="newField"
+            ref={this.inputref}
             className="new-todo"
             placeholder="[... #tags] [=targetRecords] topic"
             onKeyDown={this.handleNewTodoKeyDown}
             autoFocus={true}
           />
+          <Modal
+            title="确定添加"
+            visible={!!this.state.toAddTask}
+            onOk={this.addTask}
+            onCancel={this.cancelTask}
+          >
+            <p>title:{this.state.toAddTask?.title}</p>
+            <p>预计:{this.state.toAddTask?.targetRecords}</p>
+            <p>tags:{this.state.toAddTask?.tags}</p>
+          </Modal>
         </header>
         {mainFrame}
       </div>
@@ -160,6 +175,18 @@ export default class TaskAdd extends React.Component<
   delItem = async todoItem => {
     await pageModel.actions.action.delTask(todoItem.id);
   };
+
+
+  addTask=() => {
+    pageModel.actions.action.addTask(this.state.toAddTask);
+    this.inputref.current.value="";
+    this.inputref.current.focus();
+    this.setState({toAddTasks:undefined})
+  }
+
+  cancelTask=()=>{
+    this.setState({toAddTasks:undefined});
+  }
 
   handleNewTodoKeyDown = e => {
     if (e.key === 'Enter') {
@@ -188,11 +215,16 @@ export default class TaskAdd extends React.Component<
         }
       }
 
-      pageModel.actions.action.addTask({
-        tags,
-        targetRecords,
-        title: title.trim(),
+      this.setState({
+        toAddTask:{
+          tags,
+          targetRecords,
+          title: title.trim(),
+        }
       });
+
+      // e.target.value=""
+
     }
   };
 }

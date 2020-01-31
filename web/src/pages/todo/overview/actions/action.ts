@@ -1,7 +1,7 @@
 import {Command} from '../constant';
 import {IAllReducerProps, IMainReducer, ITaskInfoExt} from '../types';
 import {redux} from 'moon-runtime';
-import {PageModel} from './index';
+import pageModel,{PageModel} from './index';
 import api from '@/api';
 import {groupBy} from 'lodash';
 import {IRecord, ITaskInfo, ITongJi} from "../../../../../../typings/global";
@@ -68,7 +68,7 @@ export default class Action extends redux.BaseAction<IAllReducerProps> {
   /**
    * 重新加载数据
    */
-  reloadDb() {
+  reloadDb=()=> {
     let records:IRecord = window.checkSdk.dao.taskRecordDao.db;
     let tongjiDao = window.checkSdk.dao.tongjiDao;
     let current =   tongjiDao.getDayTonji();
@@ -79,7 +79,8 @@ export default class Action extends redux.BaseAction<IAllReducerProps> {
       return {...taskInfo,records:(group[taskInfo.id]||[]).length}
     });
 
-    this.commonChange('main',(main:IMainReducer)=>{
+    debugger;
+    pageModel.commonChange('main',(main:IMainReducer)=>{
       main.tasks =[...tasks];
       main.records =[...records];
       main.tongji={

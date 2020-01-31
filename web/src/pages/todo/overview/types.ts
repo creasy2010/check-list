@@ -19,7 +19,9 @@ export type IAllReducerProps = {
 };
 
 export type ITaskAddProps = {};
-export type ITaskAddState = {};
+export type ITaskAddState = {
+  toAddTask?:Partial<ITaskInfo>;
+};
 export type IModelRecordProps = {};
 export type IModelRecordState = {
   toFinishIds:string[];

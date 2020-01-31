@@ -4,8 +4,7 @@
       "@babel/preset-env",
       {
         "targets": {
-          "chrome": "79",
-          "esmodules": true
+          "browsers": ["chrome >= 79"]
         },
         "debug": true
       }
@@ -45,6 +44,7 @@
         "service": "./src/web_modules/service",
         "ui": "./src/web_modules/ui"
       }
-    }], "@babel/plugin-syntax-dynamic-import"
+    }], "@babel/plugin-syntax-dynamic-import",
+    "@babel/plugin-proposal-optional-chaining"
   ]
 }
