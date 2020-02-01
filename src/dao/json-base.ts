@@ -21,14 +21,16 @@ export class JsonBaseDao<T=any>{
 
   constructor(key: string,defaultValue:T) {
     this.fileLoc = join(baseDir, key+".json");
-    this.init();
     this._defautValue=defaultValue;
+    this.init();
   }
 
   init=()=> {
+    debugger;
     if (existsSync(this.fileLoc)) {
       this.data = readJSONSync(this.fileLoc);
     } else {
+      debugger;
       ensureFileSync(this.fileLoc);
       this.data=this._defautValue;
       this.dump();
@@ -43,6 +45,6 @@ export class JsonBaseDao<T=any>{
     if(this.data){
       writeJsonSync(this.fileLoc,this.data,{spaces:2});
     }
-  },800)
+  },0)
 
 }

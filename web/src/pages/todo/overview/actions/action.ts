@@ -3,14 +3,19 @@ import {IAllReducerProps, IMainReducer, ITaskInfoExt} from '../types';
 import {redux} from 'moon-runtime';
 import pageModel,{PageModel} from './index';
 import api from '@/api';
+import {message} from  'antd';
 import {groupBy} from 'lodash';
 import {IRecord, ITaskInfo, ITongJi} from "../../../../../../typings/global";
+import {getLocal,saveLocal} from "@/service/storage";
+
+
+const maxSubmitCount=2;
+const zhouqi=35*60*1000;
 
 export default class Action extends redux.BaseAction<IAllReducerProps> {
   constructor(pageModel: PageModel) {
     super(pageModel);
   }
-
 
   /**
    * 提交记录信息;
@@ -18,6 +23,19 @@ export default class Action extends redux.BaseAction<IAllReducerProps> {
   async submitRecord(toRecordIds,toFinishIds=[]) {
    let {main:{tasks}} =  this.state;
 
+   if(toRecordIds.length > maxSubmitCount) {
+     message.warn(`每周期最多提交条${maxSubmitCount}数据; `);
+     return ;
+   }
+
+    let lastTime = parseInt(getLocal('lastRecordTime')||0);
+
+    if((Date.now() -lastTime) < zhouqi){
+        message.warn(`与上次提交时间还没超过一个周期,请耐心等待`);
+        return ;
+    }
+
+    saveLocal("lastRecordTime",Date.now());
     toFinishIds.forEach(window.checkSdk.dao.taskDao.finishTask);
     toRecordIds.forEach((item)=>{
       window.checkSdk.dao.taskRecordDao.add({

@@ -11,8 +11,8 @@
     ],
     "baseUrl": "./src",
     "paths": {
+      "@/*": ["./src/*","./src/web_modules/*"],
       "@/**":["./src/**"],
-      "service/*": ["./web_modules/service/*"],
       "kit": ["./src/web_modules/kit"],
       "kit/*": ["./src/web_modules/kit/*"],
       "ui/*": ["./src/web_modules/ui/*"],

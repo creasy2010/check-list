@@ -12,7 +12,7 @@ import {IConfig} from "../../typings/global";
 class ConfigDao extends JsonBaseDao<IConfig> {
 
   constructor() {
-    super("config", {
+    super("config11", {
      uri:""
     });
   }

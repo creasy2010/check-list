@@ -29,6 +29,8 @@ export interface TongjiDayItem{
 
 export interface IConfig {
   uri:string;//http or local-html
+  //最后一次提交record时间;
+  // lastRecordTime:number;
 }
 
 export interface ITongJi {

@@ -40,6 +40,7 @@
         "@/**": ["./src/**"],
         "@/redux": "./src/redux",
         "@/pages": "./src/pages",
+        "@/service": "./src/service",
         "kit": "./src/web_modules/kit",
         "service": "./src/web_modules/service",
         "ui": "./src/web_modules/ui"
