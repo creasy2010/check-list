@@ -6,6 +6,7 @@
   "scripts": {
     "test": "jest",
     "build": "tsc",
+    "auto": "cd web && npm run build && cd .. && npm run build:mac",
     "build:mac": "electron-builder build  --mac",
     "watch": "tsc -w",
     "prepublishOnly": "tsc",

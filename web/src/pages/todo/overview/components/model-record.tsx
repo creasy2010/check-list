@@ -1,10 +1,9 @@
 import React from 'react';
 import {Modal} from 'antd';
-
+import * as T from '../types';
 import pageModel from '../actions';
 import {connect} from 'react-redux';
 import {store2Props} from '../selectors';
-import * as T from '../types';
 import {TodoItem} from './todo-item';
 type IModelRecordProps = T.IAllReducerProps & T.IModelRecordProps;
 
@@ -82,11 +81,11 @@ export default class ModelRecord extends React.Component<
     if(selected) {
       this.setState({
         toRecordIds:this.state.toRecordIds.concat([todoItem.id])
-      })
+      });
     } else {
       this.setState({
         toRecordIds:this.state.toRecordIds.filter(item=>item.id!==todoItem.id)
-      })
+      });
     }
   }
 

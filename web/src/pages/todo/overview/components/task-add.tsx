@@ -181,11 +181,11 @@ export default class TaskAdd extends React.Component<
     pageModel.actions.action.addTask(this.state.toAddTask);
     this.inputref.current.value="";
     this.inputref.current.focus();
-    this.setState({toAddTasks:undefined})
+    this.setState({toAddTask:undefined})
   }
 
   cancelTask=()=>{
-    this.setState({toAddTasks:undefined});
+    this.setState({toAddTask:undefined});
   }
 
   handleNewTodoKeyDown = e => {

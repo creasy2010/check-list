@@ -5,7 +5,6 @@
   "scripts": {
     "moon": "electron ./node_modules/moon-app/dist/main.js",
     "start": "node scripts/start.js dev",
-    "auto": "npm run build && echo 'copy file'",
     "deployGIt": "cd scripts && ts-node ./deploy.ts",
     "prepublishOnly": "npm run build prod",
     "deploy": "cd scripts && ts-node ./deploy.ts",
