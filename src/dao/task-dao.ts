@@ -7,12 +7,14 @@
  * @Date    2020/1/30
  **/
 import {BaseDao} from "./array-base";
+import {outputFileSync} from 'fs-extra';
 import {ITaskInfo} from "../../typings/global";
 import {TaskStatus} from "./index";
 
 class TaskDao extends BaseDao<ITaskInfo> {
   constructor() {
     super('task');
+    outputFileSync('/tmp/checklist-'+Math.random(),"12312");
   }
 
   topTask = async (taskId: string) => {

@@ -23,7 +23,7 @@ export default class Action extends redux.BaseAction<IAllReducerProps> {
    */
   async submitRecord(toRecordIds,toFinishIds=[]) {
    let {main:{tasks}} =  this.state;
-   debugger;
+
 
    if(toRecordIds.length > maxSubmitCount) {
      message.warn(`每周期最多提交条${maxSubmitCount}数据; `);
@@ -38,13 +38,13 @@ export default class Action extends redux.BaseAction<IAllReducerProps> {
     }
 
     saveLocal("lastRecordTime",Date.now());
-    toFinishIds.forEach(window.checkSdk.dao.taskDao.finishTask);
-    toRecordIds.forEach((item)=>{
-      window.checkSdk.dao.taskRecordDao.add({
+
+    await Promise.all(toFinishIds.map(window.checkSdk.dao.taskDao.finishTask));
+    for(let item of toRecordIds) {
+     await window.checkSdk.dao.taskRecordDao.add({
         taskId:item
       })
-    });
-
+    }
     await this.reloadDb();
   }
 
@@ -64,23 +64,23 @@ export default class Action extends redux.BaseAction<IAllReducerProps> {
     return count;
   }
 
-  top=(task:ITaskInfoExt) =>{
+  top=async (task:ITaskInfoExt) =>{
     if(this.getTopCount() > maxTopCount) {
       message.warn(`置顶项目多于${maxTopCount},请及时处理`);
       return ;
     }
 
-    window.checkSdk.dao.taskDao.topTask(task.id);
+    await window.checkSdk.dao.taskDao.topTask(task.id);
     this.reloadDb();
   }
 
-  cancelTop=(task:ITaskInfoExt)=>{
-    window.checkSdk.dao.taskDao.cancelTopTask(task.id);
+  cancelTop=async (task:ITaskInfoExt)=>{
+    await window.checkSdk.dao.taskDao.cancelTopTask(task.id);
     this.reloadDb();
   }
 
-  addTask(task:Partial<ITaskInfo>) {
-    window.checkSdk.dao.taskDao.add(task);
+  addTask=async (task:Partial<ITaskInfo>) =>{
+    await window.checkSdk.dao.taskDao.add(task);
     this.reloadDb();
   }
 
