@@ -9,8 +9,9 @@ import {IRecord, ITaskInfo, ITongJi} from "../../../../../../typings/global";
 import {getLocal,saveLocal} from "@/service/storage";
 
 
-const maxSubmitCount=2;
-const zhouqi=35*60*1000;
+const maxSubmitCount=3;
+const maxTopCount=5;
+const zhouqi=35*0.7*60*1000;
 
 export default class Action extends redux.BaseAction<IAllReducerProps> {
   constructor(pageModel: PageModel) {
@@ -22,6 +23,7 @@ export default class Action extends redux.BaseAction<IAllReducerProps> {
    */
   async submitRecord(toRecordIds,toFinishIds=[]) {
    let {main:{tasks}} =  this.state;
+   debugger;
 
    if(toRecordIds.length > maxSubmitCount) {
      message.warn(`每周期最多提交条${maxSubmitCount}数据; `);
@@ -55,7 +57,19 @@ export default class Action extends redux.BaseAction<IAllReducerProps> {
     this.reloadDb();
   }
 
+  getTopCount=()=>{
+    let  count = this.state.main.tasks
+      .filter(item=>item.status!==3)
+      .filter(item=>item.isTop).length;
+    return count;
+  }
+
   top=(task:ITaskInfoExt) =>{
+    if(this.getTopCount() > maxTopCount) {
+      message.warn(`置顶项目多于${maxTopCount},请及时处理`);
+      return ;
+    }
+
     window.checkSdk.dao.taskDao.topTask(task.id);
     this.reloadDb();
   }
@@ -87,7 +101,9 @@ export default class Action extends redux.BaseAction<IAllReducerProps> {
    * 重新加载数据
    */
   reloadDb=()=> {
+    debugger;
     let records:IRecord = window.checkSdk.dao.taskRecordDao.db;
+    debugger;
     let tongjiDao = window.checkSdk.dao.tongjiDao;
     let current =   tongjiDao.getDayTonji();
     let yestoday  =   tongjiDao.getDayTonji(-1);

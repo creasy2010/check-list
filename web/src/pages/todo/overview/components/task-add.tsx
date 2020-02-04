@@ -29,22 +29,10 @@ export default class TaskAdd extends React.Component<
     
 */
   render() {
-    let {main} = this.props;
+    let {main,sortTasks,completeSortTasks} = this.props;
     let {actions} = pageModel;
 
-    let tasks = main.tasks;
-    let mainFrame;
-    const todos = tasks || [];
-
-    let todoItems = todos
-      .filter(item => item.status !== 3)
-      .sort((a, b) => {
-        return (
-          (b.order || 0) +
-          (b.isTop ? 1000000000000 : 0) -
-          ((a.order || 0) + (a.isTop ? 1000000000000 : 0))
-        );
-      })
+    let todoItems = sortTasks
       .map(todo => {
         return (
           <TodoItem
@@ -63,7 +51,28 @@ export default class TaskAdd extends React.Component<
         );
       });
 
-    if (todos.length) {
+
+    let completeItems = completeSortTasks
+      .map(todo => {
+        return (
+          <TodoItem
+            key={todo.id + todo.records}
+            todo={todo}
+            onDel={this.delItem}
+            onTop={actions.action.top}
+            onCancelTop={actions.action.cancelTop}
+            // onToggle={this.toggle.bind(this, todo)}
+            // onDestroy={this.destroy.bind(this, todo)}
+            // onEdit={this.edit.bind(this, todo)}
+            // editing={this.state.editing === todo.id}
+            // onSave={this.save.bind(this, todo)}
+            // onCancel={ e => this.cancel() }
+          />
+        );
+      });
+
+    let mainFrame;
+    if (sortTasks.length) {
       mainFrame = (
         <section className="main">
           <input
@@ -168,6 +177,16 @@ export default class TaskAdd extends React.Component<
           </Modal>
         </header>
         {mainFrame}
+        <div>
+          <Button icon={this.state.showComplete?"down":"right"} onClick={()=>{
+            this.setState({
+              showComplete:!this.state.showComplete
+            })
+          }}>已完成</Button>
+          <div style={{display:this.state.showComplete?"block":"none"}} >
+            {completeItems}
+          </div>
+        </div>
       </div>
     );
   }

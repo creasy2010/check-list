@@ -20,9 +20,13 @@ export type IAllReducerProps = {
 
 export type ITaskAddProps = {};
 export type ITaskAddState = {
+  showComplete?:boolean;
   toAddTask?:Partial<ITaskInfo>;
+  completeSortTasks?:Partial<ITaskInfo>;
 };
-export type IModelRecordProps = {};
+export type IModelRecordProps = {
+  sortTasks:ITaskInfoExt[]
+};
 export type IModelRecordState = {
   toFinishIds:string[];
   toRecordIds:string[];

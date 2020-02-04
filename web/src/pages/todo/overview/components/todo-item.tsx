@@ -16,6 +16,7 @@ import {ENTER_KEY, ESCAPE_KEY} from './constants';
 export interface ITodoItem{
   //状态
   completed:boolean;
+  top:boolean;
   //title
   title:string;
   [key:string]:any;
@@ -59,9 +60,11 @@ class TodoItem extends React.Component<ITodoItemProps, ITodoItemState> {
 
   componentWillReceiveProps(nextProps: Readonly<ITodoItemProps>, nextContext: any): void {
 
-    if(nextProps.todo.records !==this.props.todo.records){
+    if(nextProps.todo.records !==this.props.todo.records || nextProps.todo.isTop !==this.props.todo.isTop
+    ){
+      debugger;
       this.setState({
-        todo:{...this.state.todo,records:nextProps.todo.records}
+        todo:{...this.state.todo,records:nextProps.todo.records,isTop:nextProps.todo.isTop}
       })
     }
   }

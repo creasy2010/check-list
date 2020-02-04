@@ -20,19 +20,12 @@ export default class ModelRecord extends React.Component<
     }
   }
   render() {
-    let {main} = this.props;
+    let {main,sortTasks} = this.props;
     if (!main.showRecordModel) {
       return null;
     }
-
     let {actions} = pageModel;
-
-    let tasks = main.tasks || [];
-
-    var todoItems = tasks.filter(item=>item.status!==3)
-      .sort(((a,b)=>{
-        return  ((b.order||0)+(b.isTop?1000000000000:0))-((a.order||0)+(a.isTop?1000000000000:0));
-      }))
+    var todoItems = sortTasks
       .map(todo => {
       return (
         <TodoItem

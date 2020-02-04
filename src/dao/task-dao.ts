@@ -43,6 +43,7 @@ class TaskDao extends BaseDao<ITaskInfo> {
     let taskInfo = await this.findById(taskId);
     if (taskInfo) {
       taskInfo.status = TaskStatus.did;
+      taskInfo.isTop = false;
     }
 
     this.update(taskId, {status: TaskStatus.did});
