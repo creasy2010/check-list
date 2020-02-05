@@ -5,7 +5,7 @@ import pageModel from '../actions';
 import {connect} from 'react-redux';
 import {store2Props} from '../selectors';
 import {TodoItem} from './todo-item';
-import {Button, Icon,Modal} from 'antd';
+import {Button, Icon,Modal,List} from 'antd';
 import ColorFont from './sub/color-font';
 import {ITaskInfo} from "../../../../../../typings/global";
 
@@ -183,8 +183,8 @@ export default class TaskAdd extends React.Component<
               showComplete:!this.state.showComplete
             })
           }}>已完成</Button>
-          <div style={{display:this.state.showComplete?"block":"none"}} >
-            {completeItems}
+          <div style={{height:"30vh",maxHeight:"100vh" ,display:this.state.showComplete?"block":"none"}} >
+            <List>  {completeItems}</List>
           </div>
         </div>
       </div>
