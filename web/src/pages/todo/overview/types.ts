@@ -8,6 +8,7 @@ export interface IMainReducer {
   tongji:{
     current:TongjiDayItem;
     last:TongjiDayItem;
+    avg:TongjiDayItem;
   };
   showRecordModel:boolean
 }

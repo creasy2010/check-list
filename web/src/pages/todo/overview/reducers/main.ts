@@ -7,7 +7,8 @@ export const INITIAL_STATE: IMainReducer = {
   records:[],
   tongji:{
     current:{},
-    last:{}
+    last:{},
+    avg:{}
   },
   showRecordModel:false
 };

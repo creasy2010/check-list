@@ -101,29 +101,28 @@ export default class Action extends redux.BaseAction<IAllReducerProps> {
    * 重新加载数据
    */
   reloadDb=()=> {
-    debugger;
     let records:IRecord = window.checkSdk.dao.taskRecordDao.db;
-    debugger;
     let tongjiDao = window.checkSdk.dao.tongjiDao;
-    let current =   tongjiDao.getDayTonji();
-    let yestoday  =   tongjiDao.getDayTonji(-1);
 
     let group = groupBy(records,(record)=>record.taskId);
     let tasks:ITaskInfoExt =window.checkSdk.dao.taskDao.db.map((taskInfo:ITaskInfo)=>{
       return {...taskInfo,records:(group[taskInfo.id]||[]).length}
     });
 
-    debugger;
-    pageModel.commonChange('main',(main:IMainReducer)=>{
-      main.tasks =[...tasks];
-      main.records =[...records];
-      main.tongji={
-        current:{...current},
-        last:{...yestoday}
-      };
-      return main;
+    pageModel.commonChange('main',()=>{
+      return {
+        paths:"main",
+        value:(main)=>{
+          main.tasks =[...tasks];
+          main.records =[...records];
+          main.tongji.current={...tongjiDao.getDayTonji()};
+          return main;
+        }
+      }
     });
   }
 }
+
+
 
 //create by moon https://github.com/creasy2010/moon

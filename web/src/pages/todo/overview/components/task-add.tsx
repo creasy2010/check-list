@@ -95,17 +95,17 @@ export default class TaskAdd extends React.Component<
             <div>
               morning:
               <br />
-              {main.tongji.current.morning}/{main.tongji.last.morning}
+              {main.tongji.current.morning}/{main.tongji.last.morning}/{main.tongji.avg.morning}
             </div>
             <div>
               afternoon:
               <br />
-              {main.tongji.current.afterNoonn}/{main.tongji.last.afterNoonn}
+              {main.tongji.current.afterNoonn}/{main.tongji.last.afterNoonn}/{main.tongji.avg.afterNoonn}
             </div>
             <div>
               night:
               <br />
-              {main.tongji.current.night}/{main.tongji.last.night}
+              {main.tongji.current.night}/{main.tongji.last.night}/{main.tongji.avg.night}
             </div>
             <div >
               total:
@@ -133,7 +133,17 @@ export default class TaskAdd extends React.Component<
                   } else {
                     return 'low';
                   }
-                }}>{main.tongji.last.total}</ColorFont>
+                }}>{main.tongji.last.total}</ColorFont>/
+                <ColorFont
+                  getLv={() => {
+                    if (main.tongji.avg.total > 6) {
+                      return 'high';
+                    } else if (main.tongji.avg.total > 3) {
+                      return 'mid';
+                    } else {
+                      return 'low';
+                    }
+                  }}>{main.tongji.avg.total}</ColorFont>
               </div>
             </div>
           </div>
