@@ -6,12 +6,12 @@
  * @coder.yang2010@gmail.com
  * @Date    2020/1/30
  **/
-import {JsonBaseDao} from "./json-base";
+import {JsonBase} from 'json-local-db';
 import {ITongJi, TongjiDayItem} from "../../typings/global";
 
 const DAYMillSecond =24* 60*60*1000;
 
-class TongjiDao extends JsonBaseDao<ITongJi> {
+class TongjiDao extends JsonBase<ITongJi> {
 
   constructor() {
     super("tongji", {

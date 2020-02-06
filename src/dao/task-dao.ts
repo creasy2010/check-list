@@ -6,15 +6,13 @@
  * @coder.yang2010@gmail.com
  * @Date    2020/1/30
  **/
-import {BaseDao} from "./array-base";
-import {outputFileSync} from 'fs-extra';
 import {ITaskInfo} from "../../typings/global";
 import {TaskStatus} from "./index";
+import {ArrayBase} from 'json-local-db';
 
-class TaskDao extends BaseDao<ITaskInfo> {
+class TaskDao extends ArrayBase<ITaskInfo> {
   constructor() {
     super('task');
-    outputFileSync('/tmp/checklist-'+Math.random(),"12312");
   }
 
   topTask = async (taskId: string) => {

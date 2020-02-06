@@ -6,10 +6,11 @@
  * @coder.yang2010@gmail.com
  * @Date    2020/1/30
  **/
-import {JsonBaseDao} from "./json-base";
 import {IConfig} from "../../typings/global";
 
-class ConfigDao extends JsonBaseDao<IConfig> {
+import {JsonBase} from 'json-local-db';
+
+class ConfigDao extends JsonBase<IConfig> {
 
   constructor() {
     super("config11", {

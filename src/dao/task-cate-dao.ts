@@ -1,6 +1,6 @@
-import {BaseDao} from "./array-base";
-import {ITaskCate} from "../../typings/global";
 
+import {ITaskCate} from "../../typings/global";
+import {ArrayBase} from 'json-local-db';
 /**
  * @desc
  *
@@ -10,7 +10,7 @@ import {ITaskCate} from "../../typings/global";
  * @Date    2020/1/30
  **/
 
-class TaskCateDao extends BaseDao<ITaskCate>{
+class TaskCateDao extends ArrayBase<ITaskCate>{
   constructor() {
     super('task-cate');
   }

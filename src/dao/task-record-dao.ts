@@ -1,6 +1,7 @@
-import {BaseDao} from "./array-base";
+
 import {IRecord} from "../../typings/global";
 import {tongjiDao} from "./tongji-dao";
+import {ArrayBase} from 'json-local-db';
 
 /**
  * @desc
@@ -12,8 +13,7 @@ import {tongjiDao} from "./tongji-dao";
  **/
 
 
-
-class TaskRecordDao extends BaseDao<IRecord>{
+class TaskRecordDao extends ArrayBase<IRecord>{
   constructor() {
     super('task-record');
   }

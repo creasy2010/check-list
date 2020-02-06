@@ -6,7 +6,7 @@
  * @coder.yang2010@gmail.com
  * @Date    2020/1/29
  **/
-import {IBase} from "../src/dao/array-base";
+import {IBase} from "json-local-db/declarations/array-base";
 
 export type Id = string;
 
