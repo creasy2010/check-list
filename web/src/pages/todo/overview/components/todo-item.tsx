@@ -14,6 +14,7 @@ import {Icon} from "antd";
 import {ENTER_KEY, ESCAPE_KEY} from './constants';
 
 export interface ITodoItem{
+  id:string
   //状态
   completed:boolean;
   top:boolean;
@@ -33,7 +34,7 @@ export interface ITodoItemProps{
   onTop?:(Item:ITodoItem)=>void;
   onCancelTop?:(Item:ITodoItem)=>void;
   onSelect?:(todoItem:ITodoItem,selected:boolean)=>void;
-  onComplete?:(todoItem:ITodoItem)=>void;
+  onComplete?:(todoItem:ITodoItem,checked:boolean)=>void;
   todo:ITodoItem;
 }
 

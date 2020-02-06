@@ -49,6 +49,12 @@ class TaskDao extends ArrayBase<ITaskInfo> {
     this.update(taskId, {status: TaskStatus.did});
   }
 
+  unFinishTask = async (taskId: string) => {
+    let taskInfo = await this.findById(taskId);
+
+    this.update(taskId, {status: TaskStatus.doing});
+  }
+
   /**
    * 添加
    * @param item

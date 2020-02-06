@@ -39,6 +39,7 @@ export default class TaskAdd extends React.Component<
             key={todo.id + todo.records}
             todo={todo}
             onDel={this.delItem}
+            onComplete={actions.action.finishTask}
             onTop={actions.action.top}
             onCancelTop={actions.action.cancelTop}
             // onToggle={this.toggle.bind(this, todo)}
@@ -59,6 +60,7 @@ export default class TaskAdd extends React.Component<
             key={todo.id + todo.records}
             todo={todo}
             onDel={this.delItem}
+            onComplete={actions.action.unFinishTask}
             onTop={actions.action.top}
             onCancelTop={actions.action.cancelTop}
             // onToggle={this.toggle.bind(this, todo)}

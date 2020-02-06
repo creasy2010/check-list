@@ -87,8 +87,16 @@ export default class Action extends redux.BaseAction<IAllReducerProps> {
   /**
    * 完成任务,修改任务状态;
    */
-  finishTask=async (taskId:string)=>{
-    await window.checkSdk.dao.taskDao.finishTask(taskId);
+  finishTask=async (taskInfo:ITaskInfo)=>{
+    debugger
+    await window.checkSdk.dao.taskDao.finishTask(taskInfo.id);
+    this.reloadDb();
+  }
+
+  unFinishTask=async (taskInfo:ITaskInfo)=>{
+    debugger
+    await window.checkSdk.dao.taskDao.unFinishTask(taskInfo.id);
+    this.reloadDb();
   }
   /**
    * 记录一个任务完成记录;

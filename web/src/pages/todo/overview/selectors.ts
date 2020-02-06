@@ -15,7 +15,7 @@ export function store2Props({TodoOverviewMain}: {TodoOverviewMain:IMainReducer})
 
     completeSortTasks:(TodoOverviewMain.tasks || []).filter(item=>item.status===3)
       .sort(((a,b)=>{
-        return a.updateTime - b.updateTime;
+        return b.updateTime - a.updateTime ;
       })),
   };
 }
