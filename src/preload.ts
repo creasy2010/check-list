@@ -11,9 +11,8 @@ import {ipcRenderer} from 'electron';
 import * as urllib from  'urllib';
 import * as fsExtra from  'fs-extra';
 import * as path from 'path';
-import {taskRecordDao,taskCateDao} from './dao';
-import {taskDao} from "./dao/task-dao";
-import {tongjiDao} from "./dao/tongji-dao";
+import {taskRecordDao,taskCateDao,tongjiDao,taskDao} from './dao';
+
 ipcRenderer.on('asynchronous-reply', (event, arg) => {
   console.log(arg); // prints "pong"
 });

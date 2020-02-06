@@ -26,6 +26,7 @@ class TongjiDao extends JsonBase<ITongJi> {
    */
   getDayTonji(date: Date|number = new Date()): TongjiDayItem {
 
+    debugger;
     if(typeof date==='number') {
       date = new Date(Date.now()+date*DAYMillSecond);
     }
