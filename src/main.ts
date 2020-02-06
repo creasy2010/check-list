@@ -33,6 +33,8 @@ function createWindow() {
   mainWindow = new BrowserWindow({
     // fullscreen: true,
     height: 600,
+    alwaysOnTop:true,
+    skipTaskbar:true,
     webPreferences: {
       devTools: true,
       contextIsolation: false,
