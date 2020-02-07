@@ -25,6 +25,7 @@ export default class Action extends redux.BaseAction<IAllReducerProps> {
    let {main:{tasks}} =  this.state;
 
 
+
    if(toRecordIds.length > maxSubmitCount) {
      message.warn(`每周期最多提交条${maxSubmitCount}数据; `);
      return ;
@@ -32,7 +33,7 @@ export default class Action extends redux.BaseAction<IAllReducerProps> {
 
     let lastTime = parseInt(getLocal('lastRecordTime')||0);
 
-    if((Date.now() -lastTime) < zhouqi){
+    if((Date.now() -lastTime) < zhouqi) {
         message.warn(`与上次提交时间还没超过一个周期,请耐心等待`);
         return ;
     }
@@ -80,6 +81,12 @@ export default class Action extends redux.BaseAction<IAllReducerProps> {
   }
 
   addTask=async (task:Partial<ITaskInfo>) =>{
+
+    if( task.targetRecords > 50 ) {
+      message.error('单个任务预计完成记录,不能超过50(),请重新划分');
+      return ;
+    }
+
     await window.checkSdk.dao.taskDao.add(task);
     this.reloadDb();
   }
