@@ -79,7 +79,7 @@ export default class Action extends redux.BaseAction<IAllReducerProps> {
     await window.checkSdk.dao.taskDao.cancelTopTask(task.id);
     this.reloadDb();
   }
-
+ 
   addTask=async (task:Partial<ITaskInfo>) =>{
 
     if( task.targetRecords > 50 ) {
