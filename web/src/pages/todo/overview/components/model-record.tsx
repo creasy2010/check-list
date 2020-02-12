@@ -77,7 +77,7 @@ export default class ModelRecord extends React.Component<
       });
     } else {
       this.setState({
-        toRecordIds:this.state.toRecordIds.filter(item=>item.id!==todoItem.id)
+        toRecordIds:this.state.toRecordIds.filter(item=>item!==todoItem.id)
       });
     }
   }

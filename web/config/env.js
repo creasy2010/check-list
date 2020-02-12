@@ -75,7 +75,6 @@ function getClientEnvironment(envCode,publicUrl) {
       env[key] = JSON.stringify(raw[key]);
       return env;
     }, {}),
-    "__ApiMock__":JSON.stringify(envCode==='prod'?{}:require('../.moon.json').api.mock.mockApi)
   };
 
   return { raw, stringified };

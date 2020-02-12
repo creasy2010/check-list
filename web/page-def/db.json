@@ -1,1 +1,47 @@
-{}
+{
+  "test/case1": {
+    "pagePath": "test/case1",
+    "models": [
+      {
+        "fileName": "main",
+        "datas": [],
+        "methods": []
+      }
+    ],
+    "actions": [
+      {
+        "fileName": "action",
+        "methods": []
+      }
+    ],
+    "subComps": [
+      {
+        "fileName": "info",
+        "methods": [
+          {
+            "name": "render",
+            "comment": "",
+            "content": "",
+            "param": ""
+          }
+        ]
+      }
+    ],
+    "lifeCycles": {
+      "init": {
+        "name": "init",
+        "param": "",
+        "content": ""
+      },
+      "clean": {
+        "name": "clean",
+        "param": "",
+        "content": ""
+      }
+    },
+    "mainComp": {
+      "methods": []
+    },
+    "title": "测试页面."
+  }
+}

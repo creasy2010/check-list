@@ -33,6 +33,7 @@
       }
     ],
     "lodash",
+    "react-directive",
     ["module-resolver", {
       "root": ["."],
       "alias": {
