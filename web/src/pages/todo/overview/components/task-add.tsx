@@ -169,7 +169,7 @@ export default class TaskAdd extends React.Component<
           </ColorFont>
         </div>
         <header className="header">
-          <div><h1>Todos</h1></div>
+          <h1>Todos</h1>
           <input
             ref={this.inputref}
             className="new-todo"
