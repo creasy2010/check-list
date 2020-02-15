@@ -77,14 +77,14 @@ export default class TaskAdd extends React.Component<
     if (sortTasks.length) {
       mainFrame = (
         <section className="main">
-          <input
-            id="toggle-all"
-            className="toggle-all"
-            type="checkbox"
-            // onChange={ e => this.toggleAll(e) }
-            // checked={activeTodoCount === 0}
-          />
-          <label htmlFor="toggle-all">Mark all as complete</label>
+          {/*<input*/}
+          {/*  id="toggle-all"*/}
+          {/*  className="toggle-all"*/}
+          {/*  type="checkbox"*/}
+          {/*  // onChange={ e => this.toggleAll(e) }*/}
+          {/*  // checked={activeTodoCount === 0}*/}
+          {/*/>*/}
+          {/*<label htmlFor="toggle-all">Mark all as complete</label>*/}
           <ul className="todo-list">{todoItems}</ul>
         </section>
       );
@@ -169,7 +169,7 @@ export default class TaskAdd extends React.Component<
           </ColorFont>
         </div>
         <header className="header">
-          <h1>todos</h1>
+          <div><h1>Todos</h1></div>
           <input
             ref={this.inputref}
             className="new-todo"
