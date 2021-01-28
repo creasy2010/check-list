@@ -31,7 +31,7 @@
     "@types/klaw": "^3.0.0",
     "@types/uuid": "^3.4.6",
     "cross-env": "^7.0.0",
-    "electron": "^7.1.9",
+    "electron": "^9.4.0",
     "electron-builder": "^21.2.0",
     "electron-rebuild": "^1.8.8",
     "jest": "^24.9.0",
